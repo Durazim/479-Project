@@ -13,7 +13,7 @@ import { ProfilePage } from '../pages/profile/profile';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  
+     
   // rootPage: any = HomePage;
   rootPage: any = ProfilePage;
 
