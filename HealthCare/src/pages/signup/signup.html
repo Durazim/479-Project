@@ -6,49 +6,117 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="main">
+    <ion-title>Sign Up</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  
-  <ion-item>
-    <ion-label>Email</ion-label>
-    <ion-input type="Email"></ion-input>
-  </ion-item>
+  <form [formGroup]="signupForm" (ngSubmit)="register(signupForm.value)">
+    <!--Email -->
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <!--Email msgs -->
+    <ion-item *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched">
+      <p style="color:red;">Sorry, field Email is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['email'].hasError('pattern') && signupForm.controls['email'].touched">
+      <p style="color:red;">Sorry, you have to follow this pattern: xx@xx.xx!</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>First Name</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Last Name</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+    <!--First Name -->
+    <ion-item>
+      <ion-label floating>First Name</ion-label>
+      <ion-input type="text" formControlName="fname" maxlength="30"></ion-input>
+    </ion-item>
+    <!--First Name msgs -->
+    <ion-item *ngIf="signupForm.controls['fname'].hasError('required') && signupForm.controls['fname'].touched">
+      <p style="color:red;">Sorry, field First Name is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['fname'].hasError('pattern') && signupForm.controls['fname'].touched">
+      <p style="color:red;">Please Enter Letters only</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('fname')!.hasError('minlength') && signupForm.controls['fname'].touched">
+      <p style="color:red;">minimum First Name length is 3</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('fname')!.hasError('maxlength') && signupForm.controls['fname'].touched">
+      <p style="color:red;">>maximum First Name length is 30</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>CPR</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
+    <!--Last Name -->
+    <ion-item>
+      <ion-label floating>Last Name</ion-label>
+      <ion-input type="text" formControlName="lname" maxlength="30"></ion-input>
+    </ion-item>
+    <!--Last Name msgs -->
+    <ion-item *ngIf="signupForm.controls['lname'].hasError('required') && signupForm.controls['lname'].touched">
+      <p style="color:red;">Sorry, field First Name is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['lname'].hasError('pattern') && signupForm.controls['lname'].touched">
+      <p style="color:red;">Please Enter Letters only</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('lname')!.hasError('minlength') && signupForm.controls['lname'].touched">
+      <p style="color:red;">minimum First Name length is 3</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('lname')!.hasError('maxlength') && signupForm.controls['lname'].touched">
+      <p style="color:red;">>maximum First Name length is 30</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Phone Number</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
+    <!--CPR Name -->
+    <ion-item>
+      <ion-label floating>CPR</ion-label>
+      <ion-input type="number" formControlName="CPR" maxlength="9"></ion-input>
+    </ion-item>
+    <!--CPR msgs -->
+    <ion-item *ngIf="signupForm.controls['CPR'].hasError('required') && signupForm.controls['CPR'].touched">
+      <p style="color:red;">Sorry, Field CPR is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('CPR')!.hasError('minlength') && signupForm.controls['CPR'].touched">
+      <p style="color:red;">Enter Only 9 Digits please</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('CPR')!.hasError('maxlength') && signupForm.controls['CPR'].touched">
+      <p style="color:red;">Only 9 Digits please!</p>
+    </ion-item>
 
+    <!--Phone Name -->
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="number" formControlName="phone" maxlength="8"></ion-input>
+    </ion-item>
+    <!--CPR msgs -->
+    <ion-item *ngIf="signupForm.controls['phone'].hasError('required') && signupForm.controls['phone'].touched">
+      <p style="color:red;">Sorry, Field Phone Number is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('phone')!.hasError('minlength') && signupForm.controls['phone'].touched">
+      <p style="color:red;">Enter Only 8 Digits please</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.get('phone')!.hasError('maxlength') && signupForm.controls['phone'].touched">
+      <p style="color:red;">Only 8 Digits please!</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type="Password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Confirm Password</ion-label>
-    <ion-input type="Password"></ion-input>
-  </ion-item>
+    <!--Password Name -->
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <!--Password msgs -->
+    <ion-item *ngIf="signupForm.controls['password'].hasError('pattern') && signupForm.controls['password'].touched">
+      <p style="color:red;">Password mush contain atleast: </p>
+         <p style="color:red;">one uppercase, lowercase letter and a digit</p>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">
+      <p style="color:red;">Password have a minimum length of 8</p>
+    </ion-item>
 
-  <button ion-button block>Sign Up</button>
-  
+    <br>
+    <button ion-button type="submit" color="primeColor" icon-start block tappable [disabled]="!signupForm.valid">SIGNUP</button>
+  </form>
+
+  <br>
+  <!--If the user want to go back to login-->
+  <p style="text-align:center;">You have an account? <a (click)="login()">Login</a></p>
 </ion-content>

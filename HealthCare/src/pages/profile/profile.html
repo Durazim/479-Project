@@ -6,7 +6,10 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="main">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>profile</ion-title>
   </ion-navbar>
 
@@ -16,6 +19,9 @@
 <ion-content padding>
 
   <!-- Image -->
+  <ion-avatar>
+    <img style="margin-left:auto; margin-right:auto; margin-top:25px; width: 25%; height: 25%;" src="../../assets/imgs/defualtprofile.png">
+  </ion-avatar> <br>
 
   <ion-item>
     <ion-label>Email</ion-label>
@@ -39,9 +45,10 @@
   <ion-item>
     <ion-label>Phone Number</ion-label>
     <ion-input type="number"></ion-input>
-  </ion-item>
+  </ion-item> <br>
 
-  <button ion-button block>Confirm Changes</button>
+  <button ion-button block>Confirm Changes</button><br>
   <button ion-button block>Change Password</button>
-  
+
+
 </ion-content>
