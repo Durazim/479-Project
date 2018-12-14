@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 //pages
 import { MyApp } from './app.component';
@@ -10,16 +11,17 @@ import { ListPage } from '../pages/list/list';
 import { SignupPage } from '../pages/signup/signup';
 import { ProfilePage } from '../pages/profile/profile';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
 //providers
 import { AuthProvider } from '../providers/auth/auth';
+import { DbProvider } from '../providers/db/db';
 
 //FireBase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { DbProvider } from '../providers/db/db';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRu0CSwkTe5XUEnXkznD93AKmtts7-Kjs",
@@ -38,7 +40,8 @@ const firebaseConfig = {
     ListPage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    ForgotPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ const firebaseConfig = {
     ListPage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    ForgotPasswordPage
   ],
   providers: [
     StatusBar,

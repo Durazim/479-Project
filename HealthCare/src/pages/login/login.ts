@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 /**
  * Generated class for the LoginPage page.
@@ -56,4 +57,7 @@ export class LoginPage {
     register(){
       this.navCtrl.push(SignupPage)
     }
+    forgot(){
+      this.navCtrl.push(ForgotPasswordPage);
+    } 
 }

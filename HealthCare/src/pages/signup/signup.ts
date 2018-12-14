@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DbProvider } from '../../providers/db/db';
+
 
 /**
  * Generated class for the SignupPage page.
@@ -58,7 +58,7 @@ export class SignupPage {
   }//end of register
 
   login() {
-    this.navCtrl.push(LoginPage);   
+   this.navCtrl.pop() 
   }
 
 
