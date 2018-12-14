@@ -66,7 +66,7 @@
       <p style="color:red;">>maximum First Name length is 30</p>
     </ion-item>
 
-    <!--CPR Name -->
+    <!--CPR-->
     <ion-item>
       <ion-label floating>CPR</ion-label>
       <ion-input type="number" formControlName="CPR" maxlength="9"></ion-input>
@@ -82,12 +82,12 @@
       <p style="color:red;">Only 9 Digits please!</p>
     </ion-item>
 
-    <!--Phone Name -->
+    <!--Phone-->
     <ion-item>
       <ion-label floating>Phone Number</ion-label>
       <ion-input type="number" formControlName="phone" maxlength="8"></ion-input>
     </ion-item>
-    <!--CPR msgs -->
+    <!--Phone msgs -->
     <ion-item *ngIf="signupForm.controls['phone'].hasError('required') && signupForm.controls['phone'].touched">
       <p style="color:red;">Sorry, Field Phone Number is required!</p>
     </ion-item>
@@ -98,12 +98,15 @@
       <p style="color:red;">Only 8 Digits please!</p>
     </ion-item>
 
-    <!--Password Name -->
+    <!--Password -->
     <ion-item>
       <ion-label floating>Password</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
     <!--Password msgs -->
+    <ion-item *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">
+      <p style="color:red;">Sorry, Field Password is required!</p>
+    </ion-item>
     <ion-item *ngIf="signupForm.controls['password'].hasError('pattern') && signupForm.controls['password'].touched">
       <p style="color:red;">Password mush contain atleast: </p>
          <p style="color:red;">one uppercase, lowercase letter and a digit</p>

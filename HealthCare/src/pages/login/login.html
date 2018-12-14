@@ -20,27 +20,43 @@
 
 
 <ion-content padding>
+  <form [formGroup]="signForm" (ngSubmit)="login(signForm.value)">
 
 
+    <ion-avatar>
+      <img style="margin-left:auto; margin-right:auto; margin-top:40px; width: 30%; height: 30%;" src="../../assets/imgs/healthcare.png">
+    </ion-avatar>
 
-  <ion-avatar>
-    <img style="margin-left:auto; margin-right:auto; margin-top:40px; width: 30%; height: 30%;" src="../../assets/imgs/healthcare.png">
-  </ion-avatar>
+    <!--Email-->
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="text" [(ngModel)]="username"></ion-input>
-  </ion-item>
+    <!--Email msgs -->
+    <ion-item *ngIf="signForm.controls['email'].hasError('required') && signForm.controls['email'].touched">
+      <p style="color:red;">Sorry, field Email is required!</p>
+    </ion-item>
+    <ion-item *ngIf="signForm.controls['email'].hasError('pattern') && signForm.controls['email'].touched">
+      <p style="color:red;">Sorry, you have to follow this pattern: xx@xx.xx!</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item><br>
+    <!--Password-->
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <!--Password msgs -->
+    <ion-item *ngIf="signForm.controls['password'].hasError('required') && signForm.controls['password'].touched">
+      <p style="color:red;">Sorry, Field Password is required!</p>
+    </ion-item>
 
-  <button ion-button block color="primary" style=" font-size:17px" (click)="login(username, password)">Login</button>
-  <br>
-  
-  <p style="text-align:center;"><a (click)="forgot()">Forgot your password?</a></p>
-  <p style="text-align:center;">You dont have an account? <a (click)="register()">register</a></p>
+    <br>
 
+    <button ion-button type="submit" color="primeColor" icon-start block tappable [disabled]="!signForm.valid">Login</button>
+    <br>
+
+    <p style="text-align:center;"><a (click)="forgot()">Forgot your password?</a></p>
+    <p style="text-align:center;">You dont have an account? <a (click)="register()">register</a></p>
+  </form>
 </ion-content>

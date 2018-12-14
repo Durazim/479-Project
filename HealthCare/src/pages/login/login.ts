@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController ,App} from 'ionic-a
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,18 +18,25 @@ import { SignupPage } from '../signup/signup';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public signForm: FormGroup;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public alertCtrl: AlertController,public app:App,public formBuilder: FormBuilder) {
+    this.signForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.pattern('.+\@.+\..+')])],
+      password: ['', Validators.compose([Validators.required])]
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public alertCtrl: AlertController,public app:App) {
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  login(username: string,password: string){
-       this.auth.loginUser( username, password)
+  
+  login(){
+    if ( this.signForm.valid ){
+    this.auth.loginUser( this.signForm.value.email, this.signForm.value.password)
        .then( authData => {
         let alert = this.alertCtrl.create({
-          title: '',
+          title: 'Logged',
           subTitle: 'successful login',
           buttons: ['OK']
    });
@@ -36,14 +44,14 @@ export class LoginPage {
       this.app.getRootNav().setRoot(HomePage);
        }, error => {
         let alert = this.alertCtrl.create({
-          title: '',
-          subTitle: 'Error',
+          title: 'Error',
+          subTitle: 'Email or Password is wrong',
           buttons: ['OK']
    });
    alert.present();
        });
     }
-
+  }
 
     register(){
       this.navCtrl.push(SignupPage)

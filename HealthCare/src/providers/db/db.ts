@@ -17,7 +17,7 @@ export class DbProvider {
     console.log('Hello DbProvider Provider');
   }
   addUserToDB(newaccount){
-    this.afdb.list('/accounts/').push(newaccount);
+    this.afdb.list('/patients/').push(newaccount);
   }
 
 }
