@@ -24,13 +24,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDRu0CSwkTe5XUEnXkznD93AKmtts7-Kjs",
-  authDomain: "project-testing-21016.firebaseapp.com",
-  databaseURL: "https://project-testing-21016.firebaseio.com",
-  projectId: "project-testing-21016",
-  storageBucket: "",
-  messagingSenderId: "106011896079"
-}
+  apiKey: "AIzaSyC8RAV4QNKF9YQx2X-UTqlcA3Q53MvVZ6w",
+  authDomain: "itcs479-healthcare.firebaseapp.com",
+  databaseURL: "https://itcs479-healthcare.firebaseio.com",
+  projectId: "itcs479-healthcare",
+  storageBucket: "itcs479-healthcare.appspot.com",
+  messagingSenderId: "624877728691"
+};
 
 
 @NgModule({
