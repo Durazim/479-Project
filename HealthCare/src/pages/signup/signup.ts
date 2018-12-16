@@ -39,7 +39,8 @@ export class SignupPage {
         lname: this.signupForm.value.lname,
         CPR:this.signupForm.value.CPR,
         gender:this.signupForm.value.gender,
-        phone:this.signupForm.value.phone
+        phone:this.signupForm.value.phone,
+        type:'patients'
       };
       this.auth.signupUser(this.signupForm.value.email,this.signupForm.value.password).then( ()=> {
        this.DB.addUserToDB(this.newaccount);

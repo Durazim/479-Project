@@ -26,11 +26,6 @@ export class LoginPage {
   public signForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public alertCtrl: AlertController,public app:App,public formBuilder: FormBuilder) {
 
-    if(this.navParams.data.email!="" && this.navParams.data.password!="")
-    {    
-      this.Eml = this.navParams.data.email;
-      this.Pas = this.navParams.data.password;
-    }
 
     this.signForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('.+\@.+\..+')])],
@@ -40,6 +35,12 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
+    if(this.navParams.data.email!="" || this.navParams.data.password!="")
+    {    
+      this.Eml = this.navParams.data.email;
+      this.Pas = this.navParams.data.password;
+    }
+
     console.log('ionViewDidLoad LoginPage');
   }
   
