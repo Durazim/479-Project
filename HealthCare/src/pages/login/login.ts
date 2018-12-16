@@ -19,8 +19,19 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
+  public Eml = "";
+  public Pas = "";
+  
   public signForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public alertCtrl: AlertController,public app:App,public formBuilder: FormBuilder) {
+
+    if(this.navParams.data.email!="" && this.navParams.data.password!="")
+    {    
+      this.Eml = this.navParams.data.email;
+      this.Pas = this.navParams.data.password;
+    }
+
     this.signForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('.+\@.+\..+')])],
       password: ['', Validators.compose([Validators.required])]

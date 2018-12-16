@@ -82,6 +82,19 @@
       <p style="color:red;">Only 9 Digits please!</p>
     </ion-item>
 
+    <!--Gender-->
+    <ion-item>
+      <ion-label floating>Gender</ion-label>
+      <ion-select interface="popover" formControlName="gender">
+        <ion-option value="Male">Male</ion-option>
+        <ion-option value="Female">Female</ion-option>
+      </ion-select>
+    </ion-item>
+    <!--Gender msgs -->
+    <ion-item *ngIf="signupForm.controls['gender'].hasError('required') && signupForm.controls['gender'].touched">
+      <p style="color:red;">Sorry, Field Gender is required!</p>
+    </ion-item>
+    
     <!--Phone-->
     <ion-item>
       <ion-label floating>Phone Number</ion-label>

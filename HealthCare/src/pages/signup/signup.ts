@@ -4,13 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DbProvider } from '../../providers/db/db';
 
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoginPage } from '../login/login'
 
 @IonicPage()
 @Component({
@@ -25,6 +19,7 @@ export class SignupPage {
       email: ['', Validators.compose([Validators.required, Validators.pattern('.+\@.+\..+')])],
       fname: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(3), Validators.maxLength(30)])],
       lname: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(3), Validators.maxLength(30)])],
+      gender:['' , Validators.compose([Validators.required])],
       phone:  ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*'), Validators.minLength(8), Validators.maxLength(8)])],
       CPR:  ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*'), Validators.minLength(9), Validators.maxLength(9)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8),Validators.pattern('.*[A-Z]+.*[a-z]+.*')])]
@@ -43,6 +38,7 @@ export class SignupPage {
         fname: this.signupForm.value.fname,
         lname: this.signupForm.value.lname,
         CPR:this.signupForm.value.CPR,
+        gender:this.signupForm.value.gender,
         phone:this.signupForm.value.phone
       };
       this.auth.signupUser(this.signupForm.value.email,this.signupForm.value.password).then( ()=> {
@@ -50,18 +46,18 @@ export class SignupPage {
         let alert = this.alertCtrl.create({
           title: '',
           subTitle: 'Registered successfuly',
-          buttons: ['OK']
-          });
+          buttons: [
+            {
+              text:'OK', 
+              handler: () => { this.navCtrl.push(LoginPage,{email: this.signupForm.value.email, password: this.signupForm.value.password }); }
+            }
+          ]});
           alert.present();
      })
     }//end of if
   }//end of register
 
   login() {
-   this.navCtrl.pop() 
+   this.navCtrl.pop();
   }
-
-
-  
-  
 }
