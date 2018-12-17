@@ -17,9 +17,14 @@ import { ViewDoctorDetailsPage } from '../view-doctor-details/view-doctor-detail
   templateUrl: 'doctor.html',
 })
 export class DoctorPage {
+
   Doctorlist: FirebaseListObservable<any[]>;
   arrayofdoctors=[];
   searched:any;
+  result:any;
+  list:any;
+  flag:Boolean=false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
     this.Doctorlist = this.DB.getdoctor();
     //putting all info in arrayofdoctor
@@ -38,28 +43,36 @@ console.log(this.arrayofdoctors)
   }
 
   viewDoctorDetails(details){
-console.log(details);
+    console.log(details);
     this.navCtrl.push(ViewDoctorDetailsPage,{data:details});
   }
 
 
   initializeItems() {
     this.searched=this.arrayofdoctors
+  }
+
+  getItems(ev: any) 
+  {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    let val = ev.target.value;
     
-      }
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') 
+    {
+      this.flag=true;
+      this.result = this.searched.filter((doctor) => 
+      {
+        // this.list = (doctor.fname.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        this.list = ((doctor.fname.toLowerCase()+doctor.lname.toLowerCase()+doctor.phone.toLowerCase()+doctor.email.toLowerCase()).indexOf(val.toLowerCase()) > -1);
+        return this.list;
+      })
+    }
+    else
+      this.flag=false;
 
-      getItems(ev) {
-        // Reset items back to all of the items
-        this.initializeItems();
-        var val = ev.target.value;
-          // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-          this.searched = this.searched.filter((doctor) => {
-          return (doctor.fname.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            
-          })
-        }
-
-
-      }
+    console.log(this.result);
+  }
 }
