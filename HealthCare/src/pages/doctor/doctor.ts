@@ -65,7 +65,6 @@ console.log(this.arrayofdoctors)
       this.flag=true;
       this.result = this.searched.filter((doctor) => 
       {
-        // this.list = (doctor.fname.toLowerCase().indexOf(val.toLowerCase()) > -1);
         this.list = ((doctor.fname.toLowerCase()+doctor.lname.toLowerCase()+doctor.phone.toLowerCase()+doctor.email.toLowerCase()).indexOf(val.toLowerCase()) > -1);
         return this.list;
       })

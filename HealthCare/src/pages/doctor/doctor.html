@@ -10,23 +10,21 @@
 
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-
-  <ion-list *ngIf="!flag">
-    <ion-item *ngFor="let Doctor of searched" (click)="viewDoctorDetails(Doctor)">
-      <ion-label> 
-          <img style=" margin-top:2em; height: 30%; width:30%" [src]="Doctor.image" /><br>
-          Dr.{{Doctor.fname}} {{Doctor.lname}}
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-list *ngIf="flag">
-    <ion-item *ngFor="let Doctor of result" (click)="viewDoctorDetails(Doctor)">
-      <ion-label> 
-          <img style=" margin-top:2em; height: 30%; width:30%" [src]="Doctor.image" /><br>
-          Dr.{{Doctor.fname}} {{Doctor.lname}}
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <span *ngIf="!flag">
+    <ion-card *ngFor="let Doctor of searched" (click)="viewDoctorDetails(Doctor)">
+      <ion-card-content>
+        <img src="{{Doctor.image}}"/>
+        Dr.{{Doctor.fname}} {{Doctor.lname}}
+      </ion-card-content>
+    </ion-card>
+  </span>
+  <span *ngIf="flag">
+    <ion-card *ngFor="let Doctor of result" (click)="viewDoctorDetails(Doctor)">
+      <ion-card-content>
+        <img src="{{Doctor.image}}"/>
+        Dr.{{Doctor.fname}} {{Doctor.lname}}
+      </ion-card-content>
+    </ion-card>
+  </span>
 
 </ion-content>
