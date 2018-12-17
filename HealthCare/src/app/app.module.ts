@@ -21,6 +21,10 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { DoctorPage } from '../pages/doctor/doctor';
+import { ViewDoctorDetailsPage } from '../pages/view-doctor-details/view-doctor-details';
+import { PatientPage } from '../pages/patient/patient';
+import { FavoritePage } from '../pages/favorite/favorite';
 
 
 const firebaseConfig = {
@@ -41,7 +45,11 @@ const firebaseConfig = {
     LoginPage,
     SignupPage,
     ProfilePage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    DoctorPage,
+    ViewDoctorDetailsPage,
+    PatientPage,
+    FavoritePage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +68,12 @@ const firebaseConfig = {
     LoginPage,
     SignupPage,
     ProfilePage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    DoctorPage,
+    ViewDoctorDetailsPage,
+    PatientPage,
+    FavoritePage
+
   ],
   providers: [
     StatusBar,

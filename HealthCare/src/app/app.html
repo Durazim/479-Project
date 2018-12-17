@@ -11,8 +11,12 @@
         {{p.title}}
       </button>
     </ion-list>
+
   </ion-content>
 
+  <ion-footer>
+    <ion-item *ngIf="logged==true">  <button ion-button block (click)="logout()" clear>Logout</button></ion-item>
+  </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
