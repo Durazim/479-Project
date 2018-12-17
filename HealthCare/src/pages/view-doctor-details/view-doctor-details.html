@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ViewDoctorDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Doctor Information</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only *ngIf="user" (click)="favorite(d.id,d.item.name)">
+        <ion-icon *ngIf="liked == false" name="heart-outline" style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
+        <ion-icon *ngIf="liked == true" name="heart" style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+
+        <ion-avatar>
+            <img style="margin-left:auto; margin-right:auto; margin-top:25px; width: 40%; height: 40%;" [src]="doctor.image">
+          </ion-avatar> <br><br>
+
+      <h2>Name: Dr.{{doctor.fname}} {{doctor.lname}} </h2>
+      <h2>Gender: {{doctor.gender}} </h2>
+      <h2>Email: {{doctor.email}} </h2>
+      <h2>Phone: {{doctor.phone}} </h2>
+   
+
+
+    </ion-item>
+
+<!--comments-->
+
+<ion-item>
+
+  <label>Comments:</label>
+</ion-item>
+</ion-content>

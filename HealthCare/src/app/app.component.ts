@@ -8,28 +8,44 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ProfilePage } from '../pages/profile/profile';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
+import { FavoritePage } from '../pages/favorite/favorite';
+import { DoctorPage } from '../pages/doctor/doctor';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-     
-   //rootPage: any = HomePage;
-  rootPage: any = LoginPage;
 
+  //rootPage: any = HomePage;
+  rootPage: any = DoctorPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+  public user:any;
+  public logged=false;
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth,public auth:AuthProvider) {
+    this.logged=false;
+    this.afAuth.authState.subscribe( users => { 
+      this.user = users.email;
+        if(users)
+          this.logged=true;
+    });
 
+
+    this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Profile', component: ProfilePage }
+      { title: 'Profile', component: ProfilePage },
+      { title: 'My Favorite', component: FavoritePage },
+      { title: 'Doctor List', component: DoctorPage },
     ];
 
   }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -45,4 +61,11 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+
+  logout(){
+this.auth.logoutUser();
+
+  }
+
 }
