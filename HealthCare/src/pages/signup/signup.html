@@ -76,7 +76,7 @@
       <p style="color:red;">Sorry, Field CPR is required!</p>
     </ion-item>
     <ion-item *ngIf="signupForm.get('CPR')!.hasError('minlength') && signupForm.controls['CPR'].touched">
-      <p style="color:red;">Enter Only 9 Digits please</p>
+      <p style="color:red;">Enter 9 Digits please</p>
     </ion-item>
     <ion-item *ngIf="signupForm.get('CPR')!.hasError('maxlength') && signupForm.controls['CPR'].touched">
       <p style="color:red;">Only 9 Digits please!</p>
@@ -105,7 +105,7 @@
       <p style="color:red;">Sorry, Field Phone Number is required!</p>
     </ion-item>
     <ion-item *ngIf="signupForm.get('phone')!.hasError('minlength') && signupForm.controls['phone'].touched">
-      <p style="color:red;">Enter Only 8 Digits please</p>
+      <p style="color:red;">Enter 8 Digits please</p>
     </ion-item>
     <ion-item *ngIf="signupForm.get('phone')!.hasError('maxlength') && signupForm.controls['phone'].touched">
       <p style="color:red;">Only 8 Digits please!</p>
