@@ -12,7 +12,13 @@ import { SignupPage } from '../pages/signup/signup';
 import { ProfilePage } from '../pages/profile/profile';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import { ChatPage } from '../pages/chat/chat'
+import { DoctorPage } from '../pages/doctor/doctor';
+import { ViewDoctorDetailsPage } from '../pages/view-doctor-details/view-doctor-details';
+import { PatientPage } from '../pages/patient/patient';
+import { FavoritePage } from '../pages/favorite/favorite';
+import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
+import { AddHealthEducationPage } from '../pages/add-health-education/add-health-education';
+import { ChatPage } from '../pages/chat/chat';
 
 //providers
 import { AuthProvider } from '../providers/auth/auth';
@@ -22,10 +28,7 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { DoctorPage } from '../pages/doctor/doctor';
-import { ViewDoctorDetailsPage } from '../pages/view-doctor-details/view-doctor-details';
-import { PatientPage } from '../pages/patient/patient';
-import { FavoritePage } from '../pages/favorite/favorite';
+
 
 
 const firebaseConfig = {
@@ -51,6 +54,8 @@ const firebaseConfig = {
     ViewDoctorDetailsPage,
     PatientPage,
     FavoritePage,
+    HealtheducationPage,
+    AddHealthEducationPage,
     ChatPage
   ],
   imports: [
@@ -75,7 +80,10 @@ const firebaseConfig = {
     ViewDoctorDetailsPage,
     PatientPage,
     FavoritePage,
+    HealtheducationPage,
+    AddHealthEducationPage,
     ChatPage
+
   ],
   providers: [
     StatusBar,

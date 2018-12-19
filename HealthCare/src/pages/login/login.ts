@@ -53,8 +53,10 @@ export class LoginPage {
           subTitle: 'successful login',
           buttons: ['OK']
    });
+   this.app.getRootNav().setRoot(HomePage);
+   window.location.reload()
+   
    alert.present();
-      this.app.getRootNav().setRoot(HomePage);
        }, error => {
         let alert = this.alertCtrl.create({
           title: 'Error',

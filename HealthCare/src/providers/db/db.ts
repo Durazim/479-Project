@@ -23,8 +23,19 @@ export class DbProvider {
   //gets
   getdoctor() { return this.afdb.list('/Doctor/'); }
   getpatient(){return this.afdb.list('/patients/');}
-  
+  getHealthEducation(){return this.afdb.list('/HealthEducation/');}
 
+  AddHealthEducation(items){
+    this.afdb.list('/HealthEducation/').push(items)        
+    .then( () => {
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Added Successfully',
+        buttons: ['OK']
+ });
+ alert.present();
+    });;
+  }
 
 
 }

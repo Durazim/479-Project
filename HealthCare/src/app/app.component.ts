@@ -12,6 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { FavoritePage } from '../pages/favorite/favorite';
 import { DoctorPage } from '../pages/doctor/doctor';
+import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,28 +21,21 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any = HomePage;
-  rootPage: any = DoctorPage;
-  pages: Array<{title: string, component: any}>;
+  rootPage: any = HealtheducationPage;
+  pages: Array<{title: string, component: any,icon: any}>;
 
   public user:any;
   public logged=false;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth,public auth:AuthProvider) {
-    this.logged=false;
-    this.afAuth.authState.subscribe( users => { 
-      this.user = users.email;
-        if(users)
-          this.logged=true;
-    });
-
-
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Profile', component: ProfilePage },
-      { title: 'My Favorite', component: FavoritePage },
-      { title: 'Doctor List', component: DoctorPage },
+      { title: 'Home', component: HomePage ,icon: 'home' },
+      { title: 'List', component: ListPage ,icon: 'list' },
+      { title: 'Profile', component: ProfilePage, icon: 'contact' },
+      { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
+      { title: 'Doctor List', component: DoctorPage ,icon: 'medkit' },
+      { title: 'Health Education', component: HealtheducationPage ,icon: 'information-circle' }
     ];
 
   }
@@ -54,6 +48,12 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.afAuth.authState.subscribe( users => { 
+      this.user = users.email;
+        if(users)
+          this.logged=true;
+    });
   }
 
   openPage(page) {
@@ -64,7 +64,12 @@ export class MyApp {
 
 
   logout(){
-    this.auth.logoutUser();
+this.auth.logoutUser();
+
   }
 
+
+  login(){
+this.nav.push(LoginPage)
+  }
 }
