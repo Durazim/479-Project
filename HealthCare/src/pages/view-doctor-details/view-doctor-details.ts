@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-
-/**
- * Generated class for the ViewDoctorDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ChatPage } from '../chat/chat';
 
 @IonicPage()
 @Component({
@@ -33,6 +27,10 @@ export class ViewDoctorDetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewDoctorDetailsPage');
+  }
+
+  chat(){
+    this.navCtrl.push(ChatPage);
   }
 
   favorite(){
