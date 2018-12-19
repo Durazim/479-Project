@@ -20,6 +20,7 @@ export class AuthProvider {
     this.user = this.afAuth.authState;
   }
   loginUser(newEmail: string, newPassword: string): Promise<any> {
+    this.logged=true;
     return this.afAuth.auth.signInWithEmailAndPassword
       (newEmail, newPassword);
       
@@ -27,6 +28,7 @@ export class AuthProvider {
   }
 
   logoutUser(): Promise<void> {
+    this.logged=false;
     return this.afAuth.auth.signOut().then(() => {
       window.location.reload();
     });

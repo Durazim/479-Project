@@ -20,11 +20,10 @@ import { FirebaseListObservable } from 'angularfire2/database';
 })
 export class AddHealthEducationPage {
   public topics = ["General", "Natural Disasters", "Food", "Skin", "Disease", "others"];
-  myDate: string= new Date().toString();
+  myDate:any=Date.now();
   public healthForm: FormGroup;
   public docEmail: any;
   public HealEdu= {email:'',fname:'',lname:'',topic:'',title:'',description:'',publishedtime:''};
-  
   public Doctorlist: FirebaseListObservable<any[]>;
   public doc = [];
   public mydoc: any;

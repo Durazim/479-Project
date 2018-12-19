@@ -12,30 +12,41 @@
     </button>
     <ion-title>Health Education</ion-title>
   </ion-navbar>
-
-</ion-header>
-
-<ion-content padding>
-
   <ion-fab top right>
     <button ion-fab mini (click)="addHE()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+</ion-header>
+
+<ion-content padding>
 
 
 
-<ion-list> 
-    <ion-item *ngFor="let list of healtheducation|async">
-      <h1><strong>Topic: {{list.topic}}</strong></h1>
-      <h2>Title: {{list.title}}</h2>
-      <h4  style="white-space: pre-line">{{list.description}} </h4> <br>
+  <ion-item>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-item>
 
-      <p>published by: {{list.lname}} {{list.fname}} at {{list.publishedtime}}</p>
+  <span *ngIf="!flag">
+    <ion-list>
+      <ion-item *ngFor="let list of searched">
+        <h1><strong>Topic: {{list.topic}}</strong></h1>
+        <h2>Title: {{list.title}}</h2>
+        <h4 style="white-space: pre-line">{{list.description}} </h4> <br>
+        <p>published by: {{list.fname}} {{list.lname}} at {{list.publishedtime|date:'short'}}</p>
+      </ion-item>
+    </ion-list>
+  </span>
 
-    </ion-item>
-
-
-  </ion-list>
+  <span *ngIf="flag">
+      <ion-list>
+        <ion-item *ngFor="let list of result">
+          <h1><strong>Topic: {{list.topic}}</strong></h1>
+          <h2>Title: {{list.title}}</h2>
+          <h4 style="white-space: pre-line">{{list.description}} </h4> <br>
+          <p>published by: {{list.fname}} {{list.lname}} at {{list.publishedtime|date:'short'}}</p>
+        </ion-item>
+      </ion-list>
+    </span>
 
 </ion-content>
