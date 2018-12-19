@@ -64,7 +64,8 @@ export class MyApp {
 
 
   logout(){
-    this.auth.logoutUser();
+this.auth.logoutUser();
+
   }
 
 }

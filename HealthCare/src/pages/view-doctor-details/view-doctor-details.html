@@ -1,17 +1,23 @@
+<!--
+  Generated template for the ViewDoctorDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
-  <ion-navbar color="main">
-    <ion-title>Doctor Information</ion-title>
-      <!--here should show a heart but i didnt work on it (still) saw it from the internet X)-->
-    <ion-buttons right>
-        <button ion-button icon-only *ngIf="user" (click)="chat()">
-          <ion-icon name="md-chatboxes" style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
-        </button>
-        <button ion-button icon-only *ngIf="user" (click)="favorite()">
-          <ion-icon *ngIf="liked == false" name="md-heart-outline"  style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
-          <ion-icon *ngIf="liked == true" name="md-heart"  style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
-        </button>
-    </ion-buttons>
-  </ion-navbar>  
+
+    <ion-navbar color="main">
+        <ion-title>Doctor Information</ion-title>
+         <!--here should show a heart but i didnt work on it (still) saw it from the internet X)-->
+        <ion-buttons right>
+          <button ion-button icon-only *ngIf="user" (click)="favorite()">
+              <ion-icon *ngIf="liked == false" name="heart-outline"  style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
+              <ion-icon *ngIf="liked == true" name="heart"  style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
+            </button>
+          </ion-buttons>
+      </ion-navbar>
+
+  
 </ion-header>
 
 

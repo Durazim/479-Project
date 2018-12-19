@@ -12,7 +12,6 @@ import { SignupPage } from '../pages/signup/signup';
 import { ProfilePage } from '../pages/profile/profile';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import { ChatPage } from '../pages/chat/chat'
 
 //providers
 import { AuthProvider } from '../providers/auth/auth';
@@ -50,8 +49,7 @@ const firebaseConfig = {
     DoctorPage,
     ViewDoctorDetailsPage,
     PatientPage,
-    FavoritePage,
-    ChatPage
+    FavoritePage
   ],
   imports: [
     BrowserModule,
@@ -74,8 +72,8 @@ const firebaseConfig = {
     DoctorPage,
     ViewDoctorDetailsPage,
     PatientPage,
-    FavoritePage,
-    ChatPage
+    FavoritePage
+
   ],
   providers: [
     StatusBar,
