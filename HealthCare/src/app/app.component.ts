@@ -55,6 +55,7 @@ export class MyApp {
           this.logged=true;
     });
   }
+  
 
   openPage(page) {
     // Reset the content nav to have just this page

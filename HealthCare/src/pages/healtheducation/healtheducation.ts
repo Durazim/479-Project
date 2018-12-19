@@ -18,16 +18,10 @@ import { DbProvider } from '../../providers/db/db';
 })
 export class HealtheducationPage {
   public healtheducation: FirebaseListObservable<any[]>;
-  public listofhd=[];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public DB: DbProvider) {
 
     this.healtheducation = this.DB.getHealthEducation();
-    this.healtheducation.subscribe(data => {
-      data.forEach(list => {
-        this.listofhd.push(list);
-      });
-      console.log(this.listofhd);
-    });
   }
 
   ionViewDidLoad() {
