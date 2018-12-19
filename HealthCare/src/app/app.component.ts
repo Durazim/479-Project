@@ -20,26 +20,34 @@ import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: any = HomePage;
-  rootPage: any = HealtheducationPage;
-  pages: Array<{title: string, component: any,icon: any}>;
+  rootPage: any;
+  //rootPage: any = HealtheducationPage;
+  pages: Array<{ title: string, component: any, icon: any }>;
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider) {
 
-  public user:any;
-  public logged=false;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth,public auth:AuthProvider) {
+    afAuth.authState.subscribe(
+      user => {
+        if (user) {
+          this.auth.useremail = user.email;
+          this.auth.logged = true;
+          this.rootPage = HomePage;
+        }
+        else {
+          this.rootPage = LoginPage;
+        }
+      });
+
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage ,icon: 'home' },
-      { title: 'List', component: ListPage ,icon: 'list' },
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'List', component: ListPage, icon: 'list' },
       { title: 'Profile', component: ProfilePage, icon: 'contact' },
       { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
-      { title: 'Doctor List', component: DoctorPage ,icon: 'medkit' },
-      { title: 'Health Education', component: HealtheducationPage ,icon: 'information-circle' }
+      { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+      { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' }
     ];
-
   }
-
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -49,13 +57,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
 
-    this.afAuth.authState.subscribe( users => { 
-      this.user = users.email;
-        if(users)
-          this.logged=true;
-    });
   }
-  
 
   openPage(page) {
     // Reset the content nav to have just this page
@@ -63,14 +65,12 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-
-  logout(){
-this.auth.logoutUser();
+  logout() {
+    this.auth.logoutUser();
 
   }
 
-
-  login(){
-this.nav.push(LoginPage)
+  login() {
+    this.nav.push(LoginPage)
   }
 }

@@ -16,20 +16,26 @@ export class AuthProvider {
 
   public logged: boolean = false;
   user: Observable<firebase.User>;
+  useremail:any="";
   constructor(public afAuth: AngularFireAuth) {
     this.user = this.afAuth.authState;
   }
   loginUser(newEmail: string, newPassword: string): Promise<any> {
-    this.logged=true;
-    return this.afAuth.auth.signInWithEmailAndPassword
-      (newEmail, newPassword);
-      
+
+    return this.afAuth.auth.signInWithEmailAndPassword(newEmail, newPassword).then(() => {
+      this.logged = true;
+      this.useremail=newEmail;
+    }, () => {
+      this.logged = false;
+      this.useremail="";
+    });
 
   }
 
   logoutUser(): Promise<void> {
-    this.logged=false;
+
     return this.afAuth.auth.signOut().then(() => {
+      this.logged = false;
       window.location.reload();
     });
   }

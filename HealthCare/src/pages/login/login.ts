@@ -53,8 +53,8 @@ export class LoginPage {
           subTitle: 'successful login',
           buttons: ['OK']
    });
-   this.app.getRootNav().setRoot(HomePage);
-   window.location.reload()
+   this.navCtrl.setRoot(HomePage);
+   //window.location.reload()
    
    alert.present();
        }, error => {

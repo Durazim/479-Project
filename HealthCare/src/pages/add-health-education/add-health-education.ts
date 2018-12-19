@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DbProvider } from '../../providers/db/db';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 /**
@@ -22,20 +23,18 @@ export class AddHealthEducationPage {
   public topics = ["General", "Natural Disasters", "Food", "Skin", "Disease", "others"];
   myDate:any=Date.now();
   public healthForm: FormGroup;
-  public docEmail: any;
   public HealEdu= {email:'',fname:'',lname:'',topic:'',title:'',description:'',publishedtime:''};
+  
   public Doctorlist: FirebaseListObservable<any[]>;
   public doc = [];
   public mydoc: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public DB: DbProvider, public afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public DB: DbProvider, public afAuth: AngularFireAuth,public auth:AuthProvider) {
     this.healthForm = formBuilder.group({
       selectedtopic: ['', Validators.compose([Validators.required])],
       topictitle: ['', Validators.compose([Validators.required])],
       topicdesc: ['', Validators.compose([Validators.required])]
     });
 
-      //this will get who is the user logged in
-    this.afAuth.authState.subscribe(user => {this.docEmail = user.email; });
     //i want  the information of the doctor who is logged in so i can put the name of the doctor+other info in a variable then use it in the other page
     this.Doctorlist = this.DB.getdoctor();
     this.Doctorlist.subscribe(data => {
@@ -43,7 +42,7 @@ export class AddHealthEducationPage {
         this.doc.push(doctor);
       });
       for (var i = 0; i < this.doc.length; i++) {
-        if (this.doc[i].email.toLowerCase() == this.docEmail) {
+        if (this.doc[i].email.toLowerCase() == this.auth.useremail) {
 
           this.mydoc = this.doc[i]
         }
@@ -64,6 +63,7 @@ export class AddHealthEducationPage {
     this.HealEdu.publishedtime=this.myDate; 
 
  this.DB.AddHealthEducation(this.HealEdu)
+
 
   }
 }
