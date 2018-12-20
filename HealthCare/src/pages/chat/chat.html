@@ -17,5 +17,10 @@
 </ion-content>
 
 <ion-footer>
-  <ion-input placeholder="Type a message"></ion-input>
+    <ion-fab bottom right>
+      <button ion-fab (click)="add()"> 
+        <ion-icon name="send"></ion-icon> 
+      </button>
+    </ion-fab>
+  <ion-input placeholder="Type a message" [(ngModel)]="msg" (keyup.enter)="add()"></ion-input>
 </ion-footer>

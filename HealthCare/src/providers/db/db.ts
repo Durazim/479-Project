@@ -32,10 +32,13 @@ export class DbProvider {
         title: '',
         subTitle: 'Added Successfully',
         buttons: ['OK']
- });
- alert.present();
-    });;
+    });
+    alert.present();
+        });;
   }
 
+  pushChat(msg){
+    this.afdb.list('/chat/').push(msg);
+  }
 
 }
