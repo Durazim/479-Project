@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { DbProvider } from '../../providers/db/db';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the ProfilePage page.
@@ -14,8 +17,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  
+  arrayofDoctors = [];
+  public Doctorlist: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
+
   }
 
   ionViewDidLoad() {

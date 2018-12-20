@@ -13,7 +13,7 @@
   <span *ngIf="!flag">
     <ion-card *ngFor="let Doctor of searched" (click)="viewDoctorDetails(Doctor)">
       <ion-card-content>
-        <img src="{{Doctor.image}}"/>
+          <img style="margin-left:auto; margin-right:auto; margin-top:25px; width: 40%; height: 40%;" [src]="Doctor.image">
         Dr.{{Doctor.fname}} {{Doctor.lname}}
       </ion-card-content>
     </ion-card>
@@ -21,7 +21,7 @@
   <span *ngIf="flag">
     <ion-card *ngFor="let Doctor of result" (click)="viewDoctorDetails(Doctor)">
       <ion-card-content>
-        <img src="{{Doctor.image}}"/>
+          <img style="margin-left:auto; margin-right:auto; margin-top:25px; width: 40%; height: 40%;" [src]="Doctor.image">
         Dr.{{Doctor.fname}} {{Doctor.lname}}
       </ion-card-content>
     </ion-card>

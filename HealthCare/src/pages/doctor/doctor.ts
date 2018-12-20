@@ -26,13 +26,15 @@ export class DoctorPage {
   flag:Boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
-    this.Doctorlist = this.DB.getdoctor();
+    this.Doctorlist = this.DB.getUsers();
     //putting all info in arrayofdoctor
     this.Doctorlist.subscribe(data => {
       data.forEach(doctor => {
+        if(doctor.type=="Doctor")
         this.arrayofdoctors.push(doctor);
       });
 });
+
 console.log(this.arrayofdoctors)
 
   this.initializeItems()

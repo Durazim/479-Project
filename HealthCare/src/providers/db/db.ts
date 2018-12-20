@@ -13,28 +13,30 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class DbProvider {
 
-  constructor(public afdb: AngularFireDatabase, public afAuth:AngularFireAuth,public alertCtrl: AlertController) {
+  constructor(public afdb: AngularFireDatabase, public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
     console.log('Hello DbProvider Provider');
-  }
-  addUserToDB(newaccount){
-    this.afdb.list('/patients/').push(newaccount);
   }
 
   //gets
-  getdoctor() { return this.afdb.list('/Doctor/'); }
-  getpatient(){return this.afdb.list('/patients/');}
-  getHealthEducation(){return this.afdb.list('/HealthEducation/');}
 
-  AddHealthEducation(items){
-    this.afdb.list('/HealthEducation/').push(items)        
-    .then( () => {
-      let alert = this.alertCtrl.create({
-        title: '',
-        subTitle: 'Added Successfully',
-        buttons: ['OK']
-    });
-    alert.present();
-        });;
+  getUsers() { return this.afdb.list('/users/'); }
+  getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
+
+  //Add
+  addUserToDB(newaccount) {
+    this.afdb.list('/users/').push(newaccount);
+  }
+
+  AddHealthEducation(items) {
+    this.afdb.list('/HealthEducation/').push(items)
+      .then(() => {
+        let alert = this.alertCtrl.create({
+          title: '',
+          subTitle: 'Added Successfully',
+          buttons: ['OK']
+        });
+        alert.present();
+      });;
   }
 
   pushChat(msg){

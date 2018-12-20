@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddHealthEducationPage } from '../add-health-education/add-health-education';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { DbProvider } from '../../providers/db/db';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the HealtheducationPage page.
@@ -23,11 +24,26 @@ export class HealtheducationPage {
   list: any;
   flag: Boolean = false;
   result: any;
+  type: boolean = false;
 
+  arrayofdoctors = [];
+  public Doctorlist: FirebaseListObservable<any[]>;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
+    //this will be true only for doctors because im searching in the doctor database! so after adding clinic and hospital this should change(add another search and make type=true)
+    this.Doctorlist = this.DB.getUsers();
+    //putting all info in arrayofdoctor
+    this.Doctorlist.subscribe(data => {
+      data.forEach(doctor => {
+        if ((doctor.email == this.auth.useremail) && (doctor.type == "Doctor")) {
+          this.type = true;
+          console.log(this.type)
+        }
+      });
+    });
+    
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
-
+    //to get all the list to display it in the page
     this.healtheducation = this.DB.getHealthEducation();
     this.healtheducation.subscribe(data => {
       data.forEach(health => {
@@ -39,6 +55,7 @@ export class HealtheducationPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HealtheducationPage');
   }
+
 
 
   addHE() {
@@ -59,7 +76,7 @@ export class HealtheducationPage {
     if (val && val.trim() != '') {
       this.flag = true;
       this.result = this.searched.filter((search) => {
-        this.list = (((search.fname.toLowerCase() +" "+ search.lname.toLowerCase()) + search.topic.toLowerCase()+search.title.toLowerCase()).indexOf(val.toLowerCase()) > -1);
+        this.list = (((search.fname.toLowerCase() + " " + search.lname.toLowerCase()) + search.topic.toLowerCase() + search.title.toLowerCase()).indexOf(val.toLowerCase()) > -1);
         return this.list;
       })
     }
