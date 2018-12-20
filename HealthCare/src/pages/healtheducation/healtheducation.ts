@@ -35,14 +35,13 @@ export class HealtheducationPage {
     //putting all info in arrayofdoctor
     this.Doctorlist.subscribe(data => {
       data.forEach(doctor => {
-        if(doctor.email==this.auth.useremail){
-            if(doctor.type=="Doctor"){
-        this.type=true;
-        console.log(this.type)
+        if ((doctor.email == this.auth.useremail) && (doctor.type == "Doctor")) {
+          this.type = true;
+          console.log(this.type)
         }
-      }
       });
-});
+    });
+    
 
     //to get all the list to display it in the page
     this.healtheducation = this.DB.getHealthEducation();
