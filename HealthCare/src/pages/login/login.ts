@@ -35,11 +35,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    if(this.navParams.data.email!="" || this.navParams.data.password!="")
-    {    
-      this.Eml = this.navParams.data.email;
-      this.Pas = this.navParams.data.password;
-    }
 
     console.log('ionViewDidLoad LoginPage');
   }

@@ -36,7 +36,7 @@ export class AddHealthEducationPage {
     });
 
     //i want  the information of the doctor who is logged in so i can put the name of the doctor+other info in a variable then use it in the other page
-    this.Doctorlist = this.DB.getdoctor();
+    this.Doctorlist = this.DB.getUsers();
     this.Doctorlist.subscribe(data => {
       data.forEach(doctor => {
         this.doc.push(doctor);

@@ -31,20 +31,18 @@ export class HealtheducationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
     //this will be true only for doctors because im searching in the doctor database! so after adding clinic and hospital this should change(add another search and make type=true)
-    this.Doctorlist = this.DB.getdoctor();
+    this.Doctorlist = this.DB.getUsers();
     //putting all info in arrayofdoctor
     this.Doctorlist.subscribe(data => {
       data.forEach(doctor => {
-        this.arrayofdoctors.push(doctor);
-      });
-      for (var i = 0; i < this.arrayofdoctors.length; i++) {
-        if (this.arrayofdoctors[i].email.toLowerCase() == this.auth.useremail) {
-          this.type = true;
-          console.log(this.type)
+        if(doctor.email==this.auth.useremail){
+            if(doctor.type=="Doctor"){
+        this.type=true;
+        console.log(this.type)
         }
       }
-
-    });
+      });
+});
 
     //to get all the list to display it in the page
     this.healtheducation = this.DB.getHealthEducation();
