@@ -33,6 +33,7 @@ export class DoctorPage {
         this.arrayofdoctors.push(doctor);
       });
 });
+
 console.log(this.arrayofdoctors)
 
   this.initializeItems()

@@ -21,14 +21,14 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class AddHealthEducationPage {
   public topics = ["General", "Natural Disasters", "Food", "Skin", "Disease", "others"];
-  myDate:any=Date.now();
+  myDate: any = Date.now();
   public healthForm: FormGroup;
-  public HealEdu= {email:'',fname:'',lname:'',topic:'',title:'',description:'',publishedtime:''};
-  
+  public HealEdu = { email: '', fname: '', lname: '', topic: '', title: '', description: '', publishedtime: '' };
+
   public Doctorlist: FirebaseListObservable<any[]>;
   public doc = [];
   public mydoc: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public DB: DbProvider, public afAuth: AngularFireAuth,public auth:AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public DB: DbProvider, public afAuth: AngularFireAuth, public auth: AuthProvider) {
     this.healthForm = formBuilder.group({
       selectedtopic: ['', Validators.compose([Validators.required])],
       topictitle: ['', Validators.compose([Validators.required])],
@@ -47,7 +47,6 @@ export class AddHealthEducationPage {
           this.mydoc = this.doc[i]
         }
       }
-      
       console.log(this.myDate)
     });
 
@@ -55,14 +54,14 @@ export class AddHealthEducationPage {
   ionViewDidLoad() {
 
   }
-  HE(){
-    
-    this.HealEdu.email=this.mydoc.email;
-    this.HealEdu.fname=this.mydoc.fname;
-    this.HealEdu.lname=this.mydoc.lname;
-    this.HealEdu.publishedtime=this.myDate; 
+  HE() {
 
- this.DB.AddHealthEducation(this.HealEdu)
+    this.HealEdu.email = this.mydoc.email;
+    this.HealEdu.fname = this.mydoc.fname;
+    this.HealEdu.lname = this.mydoc.lname;
+    this.HealEdu.publishedtime = this.myDate;
+
+    this.DB.AddHealthEducation(this.HealEdu)
 
 
   }
