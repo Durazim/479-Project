@@ -13,18 +13,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'view-doctor-details.html',
 })
 export class ViewDoctorDetailsPage {
-  liked = false;
+
   doctor: any;
   user: any;
   email: any = "";
+
   newcomment: any;
   addedcomment: any = "";
   public comment: FirebaseListObservable<any[]>;
   public commentlist = [];
   public commentForm: FormGroup;
-  displaycomment:any;
+
   public Users: FirebaseListObservable<any[]>;
-  public therealdoc:boolean=false;
+  public therealdoc: boolean = false;
+
+  liked :boolean=false;
+  public newfavorite: any;
+  public fav: FirebaseListObservable<any[]>;
+  public favlist: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public DB: DbProvider, public auth: AuthProvider, public formBuilder: FormBuilder) {
     this.doctor = this.navParams.get('data');
     console.log(this.doctor);
@@ -39,6 +45,7 @@ export class ViewDoctorDetailsPage {
         this.email = user.email;
     });
 
+
     //get comments
     this.comment = this.DB.getComment();
     this.comment.subscribe(data => {
@@ -49,12 +56,27 @@ export class ViewDoctorDetailsPage {
       });
     });
 
-       if(this.doctor.email==this.auth.useremail){
-         this.therealdoc=true;
-         console.log(this.doctor.email)
-         console.log(this.auth.useremail)
-         console.log(this.therealdoc)
-       }
+    //only logged doctor can only delete the comments under him 
+    if (this.doctor.email == this.auth.useremail) {
+      this.therealdoc = true;
+      console.log(this.doctor.email)
+      console.log(this.auth.useremail)
+      console.log(this.therealdoc)
+    }
+
+    //to get the fav
+    this.fav = this.DB.getFavorite();
+    this.fav.subscribe(data => {
+      data.forEach(favoriates => {
+        if ((favoriates.user == this.auth.useremail) && (favoriates.doctoremail == this.doctor.email)) {
+
+          this.favlist = favoriates;
+          this.liked = favoriates.stats
+          console.log( this.favlist.$key)
+        }
+
+      })
+    })
 
 
   }
@@ -65,7 +87,7 @@ export class ViewDoctorDetailsPage {
   }
 
   initializeItems() {
-    this.commentlist=[];
+    this.commentlist = [];
   }
 
   chat() {
@@ -73,7 +95,23 @@ export class ViewDoctorDetailsPage {
   }
 
   favorite() {
-    alert("this is just a fake fav for now :)")
+    if (this.liked == false) {
+      this.newfavorite = {
+        stats: true,
+        user: this.auth.useremail,
+        doctoremail: this.doctor.email,
+        docfname:this.doctor.fname,
+        doclname:this.doctor.lname,
+        docimage:this.doctor.image
+      }
+      this.DB.addFavorite(this.newfavorite);
+      this.liked = true;
+
+    }
+    else {
+      this.DB.deleteFavorite(this.favlist.$key)
+      this.liked = false;
+    }
   }
 
   addNewComment() {
@@ -87,11 +125,13 @@ export class ViewDoctorDetailsPage {
 
     this.DB.addComment(this.newcomment);
 
-this.addedcomment="";
+    this.addedcomment = "";
   }
 
-  deletecomment(mycomment,key){
+  deletecomment(mycomment, key) {
 
     this.DB.deleteaComments(mycomment, key);
   }
+
+
 }

@@ -22,8 +22,10 @@ export class DbProvider {
   getUsers() { return this.afdb.list('/users/'); }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
+  getFavorite(){return this.afdb.list('favorite')}
 
   //Add
+
   addUserToDB(newaccount) {
     this.afdb.list('/users/').push(newaccount);
   }
@@ -42,6 +44,10 @@ export class DbProvider {
     this.afdb.list('/comments/').push(comment);
   }
 
+  addFavorite(favorite){
+    this.afdb.list('/favorite/').push(favorite);
+  }
+
   //delete
   
   deleteaComments(comment, key) {
@@ -52,6 +58,12 @@ export class DbProvider {
         alert('comment was deleted!');
       });
   }
+  deleteFavorite(key){
+    this.afdb.list('/favorite/').remove(key)
+  }
+  
+  //update
+
 
   pushChat(msg){
     this.afdb.list('/chat/').push(msg);
