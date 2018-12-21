@@ -13,7 +13,6 @@ import { AuthProvider } from '../providers/auth/auth';
 import { FavoritePage } from '../pages/favorite/favorite';
 import { DoctorPage } from '../pages/doctor/doctor';
 import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
-import { ChatlistPage } from '../pages/chatlist/chatlist';
 
 @Component({
   templateUrl: 'app.html'
@@ -46,7 +45,6 @@ export class MyApp {
       { title: 'Profile', component: ProfilePage, icon: 'contact' },
       { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
       { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
-      { title: 'Chats List', component: ChatlistPage, icon: 'md-chatboxes' },
       { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' }
     ];
   }

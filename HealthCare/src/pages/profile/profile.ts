@@ -18,11 +18,21 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class ProfilePage {
   
-  arrayofDoctors = [];
-  public Doctorlist: FirebaseListObservable<any[]>;
+  myUser={'CPR':'','email':'','fname':'','gender':'','image':'','lname':'' ,'phne':'' ,'type':''};
+  public listofusers: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth:AuthProvider ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
+    this.listofusers = this.DB.getUsers();
+    //putting all info in arrayofdoctor
+    this.listofusers.subscribe(data => {
+      data.forEach(user => {
+        if (user.email == this.auth.useremail){
+          this.myUser=user;
+          console.log(this.myUser)
+        }
 
+      });
+});
   }
 
   ionViewDidLoad() {

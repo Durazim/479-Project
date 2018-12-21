@@ -15,7 +15,17 @@
 
 </ion-header>
 
-
 <ion-content padding>
+
+
+<ion-item *ngFor="let myfav of favlist"> 
+    <ion-avatar>
+       
+      <img style="margin-top:25px; width: 100px; height: 100px;" [src]="myfav.docimage"> 
+      Dr. {{myfav.docfname}} {{myfav.doclname}}
+    </ion-avatar>
+    
+  </ion-item>
+
 
 </ion-content>

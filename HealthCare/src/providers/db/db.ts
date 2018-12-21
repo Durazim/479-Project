@@ -53,12 +53,14 @@ export class DbProvider {
     return uName;
   }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
+  getComment() { return this.afdb.list('/comments/'); }
+  getFavorite(){return this.afdb.list('favorite')}
 
   //Add
+
   addUserToDB(newaccount) {
     this.afdb.list('/users/').push(newaccount);
   }
-
   AddHealthEducation(items) {
     this.afdb.list('/HealthEducation/').push(items)
       .then(() => {
@@ -69,6 +71,13 @@ export class DbProvider {
         });
         alert.present();
       });;
+  }
+  addComment(comment){
+    this.afdb.list('/comments/').push(comment);
+  }
+
+  addFavorite(favorite){
+    this.afdb.list('/favorite/').push(favorite);
   }
 
   pushMsg(key2,msg){
@@ -132,7 +141,26 @@ export class DbProvider {
       });    
     });
 
-    return this.chats;
+    return this.chats;}
+  //delete
+  
+  deleteaComments(comment, key) {
+    this.afdb.list('/deletedcomment(just a test)/').push(comment)
+
+    this.afdb.list('/comments/').remove(key)
+      .then((response) => {
+        alert('comment was deleted!');
+      });
+  }
+  deleteFavorite(key){
+    this.afdb.list('/favorite/').remove(key)
+  }
+  
+  //update
+
+
+  pushChat(msg){
+    this.afdb.list('/chat/').push(msg);
   }
 
 }

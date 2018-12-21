@@ -19,7 +19,6 @@ import { FavoritePage } from '../pages/favorite/favorite';
 import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { AddHealthEducationPage } from '../pages/add-health-education/add-health-education';
 import { ChatPage } from '../pages/chat/chat';
-import { ChatlistPage } from '../pages/chatlist/chatlist';
 
 //providers
 import { AuthProvider } from '../providers/auth/auth';
@@ -57,8 +56,7 @@ const firebaseConfig = {
     FavoritePage,
     HealtheducationPage,
     AddHealthEducationPage,
-    ChatPage,
-    ChatlistPage
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -84,8 +82,8 @@ const firebaseConfig = {
     FavoritePage,
     HealtheducationPage,
     AddHealthEducationPage,
-    ChatPage,
-    ChatlistPage
+    ChatPage
+
   ],
   providers: [
     StatusBar,
