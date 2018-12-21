@@ -21,7 +21,7 @@ export class ProfilePage {
   arrayofDoctors = [];
   public Doctorlist: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth:AuthProvider ) {
 
   }
 

@@ -6,14 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>chat</ion-title>
+  <ion-navbar  color="main">
+    <ion-title>{{recName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <span *ngFor="let ct of chat">
+      {{ct}}
+      <!-- <ion-item *ngIf="ct.by==sen" color="sen">
+        {{ct.message}}
+      </ion-item>
+      <ion-item *ngIf="ct.by==rec" color="rec">
+        {{ct.message}}
+      </ion-item> -->
+  </span>
 </ion-content>
 
 <ion-footer>

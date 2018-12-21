@@ -10,12 +10,12 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Chatlist</ion-title>
+    <ion-title>Chat List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item *ngFor="let chat of chats" (click)="goToChat(chat.chat)">{{chat.name}}</ion-item>
 </ion-content>

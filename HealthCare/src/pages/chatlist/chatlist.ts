@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { DbProvider } from '../../providers/db/db';
+import { Observable } from 'rxjs/Observable';
+import { ChatPage } from '../chat/chat';
 
 /**
  * Generated class for the ChatlistPage page.
@@ -15,11 +19,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChatlistPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private chats;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
   }
 
   ionViewDidLoad() {
+    this.chats = this.DB.getChats();
+    console.log(this.chats); 
     console.log('ionViewDidLoad ChatlistPage');
   }
+
+  goToChat(chat)
+  {
+    this.navCtrl.push(ChatPage,{chat:chat,flagCL:true});
+  }
+
 
 }

@@ -19,9 +19,8 @@ export class ViewDoctorDetailsPage {
   constructor(public navCtrl: NavController, public DB: DbProvider, public navParams: NavParams,public afAuth: AngularFireAuth) {
     this.doctor=this.navParams.get('data');
     console.log(this.doctor);
-
+    this.ukey=this.DB.getUserKey();
     this.afAuth.authState.subscribe( user => { 
-  
       this.user = user;
       if(user)
         this.email=user.email;
@@ -32,10 +31,9 @@ export class ViewDoctorDetailsPage {
     console.log('ionViewDidLoad ViewDoctorDetailsPage');
   }
 
-  // chat(){
-  //   this.DB.CreateChat(this.doctor.$key,this.ukey);
-  //   this.navCtrl.push(ChatPage,{d:this.doctor.$key});
-  // }
+  chat(){
+    this.navCtrl.push(ChatPage,{d:this.doctor.$key});
+  }
 
   favorite(){
     alert("this is just a fake fav for now :)")
