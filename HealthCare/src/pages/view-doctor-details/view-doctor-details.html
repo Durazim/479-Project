@@ -26,7 +26,6 @@
 
 <ion-content padding>
 
-    <!--normal info-->
   <ion-item>
 
     <ion-avatar>
@@ -38,6 +37,8 @@
     <h2>Email: {{doctor.email}} </h2>
     <h2>Phone: {{doctor.phone}} </h2>
 
+
+
   </ion-item>
 
   <!--comments-->
@@ -46,33 +47,4 @@
 
     <label>Comments:</label>
   </ion-item>
-
-  <ion-list *ngFor="let mycomment of commentlist">
-    <ion-item-sliding>
-      <ion-item>
-        <p>{{mycomment.user}}:</p>
-        <h2 style="margin-left:30px;white-space: pre-line" >{{mycomment.comment}}</h2><br>
-
-      </ion-item>
-
-      <ion-item-options side="right" *ngIf="therealdoc">
-        <button ion-button color="danger" (click)="deletecomment(mycomment,mycomment.$key)">
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-  </ion-list>
-
 </ion-content>
-
-  <!--add comment-->
-<ion-footer>
-  <form [formGroup]="commentForm" (ngSubmit)="addNewComment(commentForm.value)">
-    <ion-item>
-      <ion-label placeholder="Enter Comment" floating>Add a comment</ion-label>
-      <ion-input type="text" formControlName="thecomment" [(ngModel)]="addedcomment"></ion-input>
-    </ion-item>
-    <button block ion-button outline color="main" type="submit" [disabled]="!commentForm.valid">Add Comment</button>
-  </form>
-</ion-footer>
