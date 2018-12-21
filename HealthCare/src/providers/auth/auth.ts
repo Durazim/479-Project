@@ -22,20 +22,14 @@ export class AuthProvider {
   }
   loginUser(newEmail: string, newPassword: string): Promise<any> {
 
-    return this.afAuth.auth.signInWithEmailAndPassword(newEmail, newPassword).then(() => {
-      this.logged = true;
-      this.useremail=newEmail;
-    }, () => {
-      this.logged = false;
-      this.useremail="";
-    });
-
+    return this.afAuth.auth.signInWithEmailAndPassword(newEmail, newPassword)
   }
 
   logoutUser(): Promise<void> {
 
     return this.afAuth.auth.signOut().then(() => {
       this.logged = false;
+      this.useremail="";
       window.location.reload();
     });
   }

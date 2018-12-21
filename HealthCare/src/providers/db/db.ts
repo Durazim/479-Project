@@ -21,12 +21,12 @@ export class DbProvider {
 
   getUsers() { return this.afdb.list('/users/'); }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
+  getComment() { return this.afdb.list('/comments/'); }
 
   //Add
   addUserToDB(newaccount) {
     this.afdb.list('/users/').push(newaccount);
   }
-
   AddHealthEducation(items) {
     this.afdb.list('/HealthEducation/').push(items)
       .then(() => {
@@ -37,6 +37,20 @@ export class DbProvider {
         });
         alert.present();
       });;
+  }
+  addComment(comment){
+    this.afdb.list('/comments/').push(comment);
+  }
+
+  //delete
+  
+  deleteaComments(comment, key) {
+    this.afdb.list('/deletedcomment(just a test)/').push(comment)
+
+    this.afdb.list('/comments/').remove(key)
+      .then((response) => {
+        alert('comment was deleted!');
+      });
   }
 
   pushChat(msg){
