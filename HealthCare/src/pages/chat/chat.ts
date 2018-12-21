@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { DbProvider } from '../../providers/db/db';
 
 /**
  * Generated class for the ChatPage page.
@@ -15,11 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChatPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private msg:string="";
+  private d;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
+    this.d=this.navParams.data.d;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
+  }
+
+  add()
+  {
+    console.log(this.d);
+    console.log(this.msg);
   }
 
 }

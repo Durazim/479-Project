@@ -18,6 +18,7 @@ export class DbProvider {
   }
 
   //gets
+
   getUsers() { return this.afdb.list('/users/'); }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
 
@@ -38,5 +39,8 @@ export class DbProvider {
       });;
   }
 
+  pushChat(msg){
+    this.afdb.list('/chat/').push(msg);
+  }
 
 }
