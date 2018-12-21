@@ -17,7 +17,8 @@ export class AuthProvider {
   public logged: boolean = false;
   user: Observable<firebase.User>;
   useremail:any="";
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth) 
+  {
     this.user = this.afAuth.authState;
   }
   loginUser(newEmail: string, newPassword: string): Promise<any> {

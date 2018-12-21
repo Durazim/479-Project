@@ -13,6 +13,8 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class DbProvider {
 
+  public chatpath;
+
   constructor(public afdb: AngularFireDatabase, public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
     console.log('Hello DbProvider Provider');
   }
@@ -39,8 +41,19 @@ export class DbProvider {
       });;
   }
 
-  pushChat(msg){
-    this.afdb.list('/chat/').push(msg);
-  }
+  // CreateChat(dKey,pKey)
+  // {
+  //   let keys = {
+  //     Doctor:dKey,
+  //     Patient:pKey
+  //   }
+  //   this.chatpath= '/chat/'+dKey+pKey;
+  //   console.log(this.chatpath);
+  //   // this.afdb.list(this.chatpath).push(keys);
+  // }
+
+  // pushMsg(msg){
+  //   this.afdb.list('/chat/').push(msg);
+  // }
 
 }
