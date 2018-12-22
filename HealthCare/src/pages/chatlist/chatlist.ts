@@ -25,14 +25,15 @@ export class ChatlistPage {
   }
 
   ionViewDidLoad() {
-    this.chats = this.DB.getChats();
+    this.chats = this.DB.getChatsNames();
     console.log(this.chats); 
     console.log('ionViewDidLoad ChatlistPage');
   }
 
   goToChat(chat)
   {
-    this.navCtrl.push(ChatPage,{chat:chat,flagCL:true});
+    let flag:Boolean=true;
+    this.navCtrl.push(ChatPage,{chats:chat,flagCL:flag});
   }
 
 

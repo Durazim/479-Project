@@ -15,7 +15,6 @@ export class DbProvider {
   private toArray:any;
 
   public chats:any=[];
-  // chats:FirebaseListObservable<any[]>;
 
   constructor(public afdb: AngularFireDatabase, public auth:AuthProvider , public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
     console.log('Hello DbProvider Provider');
@@ -36,7 +35,8 @@ export class DbProvider {
   { 
     let uName:String="";
     this.afdb.list('/users/').subscribe (users => 
-    { users.forEach(user => 
+    { 
+      users.forEach(user => 
       { 
         if(user.$key==key) 
         { 
@@ -45,12 +45,13 @@ export class DbProvider {
           else
             uName=user.fname+" "+user.lname;
 
-          console.log(uName);
-          // return uName;
+          // console.log(uName);
+          // console.log("-------");
+          return uName;
         }
       }); 
     }); 
-    return uName;
+    // return uName;
   }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
@@ -88,62 +89,80 @@ export class DbProvider {
       this.chatpath= '/chat/'+key2+'+'+this.ukey;
       
 
-    let block = {
+    let Senit = {
           message:msg,
           by:this.ukey
         }
     
     // console.log(this.chatpath);
-    console.log(block);
-    this.afdb.list(this.chatpath).push(block);
+    console.log(Senit);
+    this.afdb.list(this.chatpath).push(Senit);
   }
 
   getChats()
   {
-    this.afdb.list('/chat/').subscribe(allChats => 
+    return this.afdb.list('/chat/');
+  }
+
+  getChatsNames()
+  {
+    this.afdb.list('/chat/').subscribe(allChats =>
     {
-      allChats.forEach(chat => 
+      allChats.forEach(chat =>
       {
         let toArray =  chat.$key.split("+");
-        // console.log(chat);
         if((toArray[0]==this.ukey)||(toArray[1]==this.ukey))
-        {
-          if(toArray[0]!=this.ukey)
+          if(this.ukey!=toArray[0])
+          {
             this.afdb.list('/users/').subscribe (users => 
-              { users.forEach(user => 
+            { users.forEach(user => 
+              { 
+                if(user.$key==toArray[0]) 
                 { 
-                  if(user.$key==toArray[0]) 
-                  { 
-                    let block = {
-                      chat:chat,
-                      name:(user.fname+" "+user.lname)
-                    }
-                    // console.log(block);
-                    this.chats.push(block); 
-                  }
-                }); 
-              });
-          else
-            this.afdb.list('/users/').subscribe (users => 
-              { users.forEach(user => 
-                { 
-                  if(user.$key==toArray[1]) 
-                  { 
-                    let block = {
-                      chat:chat,
-                      name:(user.fname+" "+user.lname)
-                    }
-                    console.log(block);
-                  }
-                }); 
-              });
-        }
-      });    
-    });
+                  let uName:String="-";
+                  if(user.type=="Doctor")
+                    uName="Dr."+user.fname+" "+user.lname;
+                  else
+                    uName=user.fname+" "+user.lname;
 
-    return this.chats;}
+                    let block = {
+                      chat: chat.$key,
+                      name: uName
+                    }
+                    this.chats.push(block);
+                }
+              }); 
+            }); 
+          }
+          else
+          {
+            this.afdb.list('/users/').subscribe (users => 
+            { users.forEach(user => 
+              { 
+                if(user.$key==toArray[1]) 
+                { 
+                  let uName:String="-";
+                  if(user.type=="Doctor")
+                    uName="Dr."+user.fname+" "+user.lname;
+                  else
+                    uName=user.fname+" "+user.lname;
+
+                    let block = {
+                      chat: chat.$key,
+                      name: uName
+                    }
+                    this.chats.push(block);
+                }
+              }); 
+            }); 
+          }
+      });
+    });
+    return this.chats;
+  }
+
+
   //delete
-  
   deleteaComments(comment, key) {
     this.afdb.list('/deletedcomment(just a test)/').push(comment)
 

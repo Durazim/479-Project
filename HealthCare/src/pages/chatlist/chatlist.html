@@ -6,16 +6,17 @@
 -->
 <ion-header>
 
-<ion-navbar color="main">
-    <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    <ion-title>Chat List</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <ion-item *ngFor="let chat of chats" (click)="goToChat(chat.chat)">{{chat.name}}</ion-item>
-</ion-content>
+  <ion-navbar color="main">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Chat List</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-item *ngFor="let chat of chats" (click)="goToChat(chat.chat)">{{chat.name}}</ion-item>
+  </ion-content>
+  
