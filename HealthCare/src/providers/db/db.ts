@@ -51,7 +51,6 @@ export class DbProvider {
         }
       }); 
     }); 
-    // return uName;
   }
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
@@ -81,7 +80,8 @@ export class DbProvider {
     this.afdb.list('/favorite/').push(favorite);
   }
 
-  pushMsg(key2,msg){
+  pushMsg(key2,msg)
+  {
     
     if(this.ukey<key2)
       this.chatpath= '/chat/'+this.ukey+'+'+key2;
@@ -104,6 +104,8 @@ export class DbProvider {
     return this.afdb.list('/chat/');
   }
 
+
+
   getChatsNames()
   {
     this.afdb.list('/chat/').subscribe(allChats =>
@@ -114,6 +116,7 @@ export class DbProvider {
         if((toArray[0]==this.ukey)||(toArray[1]==this.ukey))
           if(this.ukey!=toArray[0])
           {
+            this.chats=[];
             this.afdb.list('/users/').subscribe (users => 
             { users.forEach(user => 
               { 
@@ -136,6 +139,7 @@ export class DbProvider {
           }
           else
           {
+            this.chats=[];
             this.afdb.list('/users/').subscribe (users => 
             { users.forEach(user => 
               { 
@@ -182,4 +186,16 @@ export class DbProvider {
     this.afdb.list('/chat/').push(msg);
   }
 
+  getChatsByKey(chatkey)
+  {
+    return this.afdb.list('/chat/'+chatkey);
+  }
+
+  pushMed(key,med)
+  {
+    let medPath = '/Medications/'+key;
+    console.log(medPath);
+    console.log(med);
+    this.afdb.list(medPath).push(med);
+  }
 }

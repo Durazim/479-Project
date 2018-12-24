@@ -22,6 +22,7 @@ export class ChatlistPage {
   private chats;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider) {
+    this.chats = this.DB.getChatsNames();
   }
 
   ionViewDidLoad() {

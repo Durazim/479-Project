@@ -8,20 +8,29 @@
 
   <ion-navbar  color="main">
     <ion-title>{{recName}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="medpage()">
+        <ion-icon name="ios-clipboard-outline" style="font-size: 40px; margin-right:0.3em; color:white"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <!-- <span *ngFor="let ct of chats">
-      <ion-item *ngIf="ct.by==sen" color="sen">
-        {{ct.message}}
-      </ion-item>
-      <ion-item *ngIf="ct.by==rec" color="rec">
-        {{ct.message}}
+  <span *ngFor="let chatMsg of chats">
+    <ion-card *ngIf="chatMsg.by == sen">
+      <ion-item color="sen">
+        {{chatMsg.message}}
       </ion-item> 
-  </span> -->
+    </ion-card>
+    <ion-card *ngIf="chatMsg.by != sen">
+      <ion-item color="rec">
+        {{chatMsg.message}}
+      </ion-item> 
+    </ion-card>
+  </span>
 </ion-content>
 
 <ion-footer>

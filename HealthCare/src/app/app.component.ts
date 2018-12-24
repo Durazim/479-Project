@@ -14,6 +14,7 @@ import { FavoritePage } from '../pages/favorite/favorite';
 import { DoctorPage } from '../pages/doctor/doctor';
 import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
+import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
 
 @Component({
   templateUrl: 'app.html'
@@ -47,7 +48,8 @@ export class MyApp {
       { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
       { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
       { title: 'Chats', component: ChatlistPage, icon: 'send' },
-      { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' }
+      { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+      { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
     ];
   }
 

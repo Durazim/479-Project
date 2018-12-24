@@ -20,6 +20,8 @@ import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { AddHealthEducationPage } from '../pages/add-health-education/add-health-education';
 import { ChatPage } from '../pages/chat/chat';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
+import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
+import { MedicationsFormPage } from '../pages/medications-form/medications-form';
 
 //providers
 import { AuthProvider } from '../providers/auth/auth';
@@ -58,7 +60,9 @@ const firebaseConfig = {
     HealtheducationPage,
     AddHealthEducationPage,
     ChatPage,
-    ChatlistPage
+    ChatlistPage,
+    MedicationslistPage,
+    MedicationsFormPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,9 @@ const firebaseConfig = {
     HealtheducationPage,
     AddHealthEducationPage,
     ChatPage,
-    ChatlistPage
+    ChatlistPage,
+    MedicationslistPage,
+    MedicationsFormPage
   ],
   providers: [
     StatusBar,

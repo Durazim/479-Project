@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { DbProvider } from '../../providers/db/db';
 import { CommentStmt } from '@angular/compiler';
+import { MedicationslistPage } from '../medicationslist/medicationslist';
 
 @IonicPage()
 @Component({
@@ -23,65 +24,37 @@ export class ChatPage {
     this.sen=this.DB.getUserKey();
     this.chatkey=this.navParams.data.chats;
     this.flag=this.navParams.data.flagCL;
+    
     console.log(this.flag);
     if(this.flag)
     {
-      // let toArray =  this.chat.$key.split("+");
-      // if(this.sen!=toArray[0])
-      // {
-      //   this.rec=toArray[0];
-      // }
-      // else
-      // {
-      //   this.rec=toArray[1];
-      // }
-      // // console.log(this.rec);
-      // this.recName=this.DB.getUserName(this.rec);
-      // console.log(this.recName);
-
-      this.DB.getChats().subscribe(allChats => 
+      let toArray =  this.chatkey.split("+");
+      if(this.sen!=toArray[0])
       {
-        allChats.forEach(chat => 
-        {
-          if(chat.$key==this.chatkey)
-          { 
-            let toArray =  chat.$key.split("+");
-            if(this.sen!=toArray[0])
-              this.rec=toArray[0];
-            else
-              this.rec=toArray[1];
+        this.rec=toArray[0];
+      }
+      else
+      {
+        this.rec=toArray[1];
+      }
+      // console.log(this.rec);
+      this.recName=this.DB.getUserName(this.rec);
+      console.log(this.recName);
 
-            console.log(chat);
-            // chat.forEach(element => {
-            //   this.chats.push(element);
-            // });
-            // console.log(this.chats);
-            // this.recName=this.DB.getUserName(this.rec);
-            console.log(this.rec);
-
-            this.DB.getUsers().subscribe (users => 
-            { 
-              users.forEach(user => 
-              { 
-                if(user.$key==this.rec) 
-                { 
-                  if(user.type=="Doctor")
-                    this.recName="Dr."+user.fname+" "+user.lname;
-                  else
-                    this.recName=user.fname+" "+user.lname;
-                }
-              }); 
-            }); 
-            console.log(this.recName);
-          }
-        });    
-      });
     }
     else
       this.rec=this.navParams.data.d;
   }
 
   ionViewDidLoad() {
+    this.DB.getChatsByKey(this.chatkey).subscribe(chat => 
+      {
+        this.chats=[];
+        console.log(chat);
+        chat.forEach(chatMsg=>{
+          this.chats.push(chatMsg);
+        })
+      });
     console.log('ionViewDidLoad ChatPage');
   }
 
@@ -90,6 +63,12 @@ export class ChatPage {
     console.log(this.msg);
     if(this.msg.trim()!="")
       this.DB.pushMsg(this.rec,this.msg);
+    this.msg="";
+  }
+
+  medpage()
+  {
+    this.navCtrl.push(MedicationslistPage,{medkey:this.chatkey});
   }
 
 }
