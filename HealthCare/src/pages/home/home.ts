@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -8,10 +9,11 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
 
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public auth:AuthProvider,public DB:AuthProvider) {
 
+
+console.log(this.auth.myuser)
   }
-
 
 }
 

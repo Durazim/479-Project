@@ -16,6 +16,8 @@ import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
 import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
 import { MedicationsFormPage } from '../pages/medications-form/medications-form';
+import { DbProvider } from '../providers/db/db';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,33 +28,83 @@ export class MyApp {
   rootPage: any;
   // rootPage: any = ChatlistPage;
   pages: Array<{ title: string, component: any, icon: any }>;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider, public DB: DbProvider) {
 
-    afAuth.authState.subscribe(
+    const authObserver = afAuth.authState.subscribe(
       user => {
         if (user) {
           this.auth.useremail = user.email;
           this.auth.logged = true;
           this.rootPage = HomePage;
+          this.auth.userslist = this.DB.getUsers();
+          this.auth.userslist.subscribe(data => {
+            data.forEach(logged => {
+              if (this.auth.useremail == logged.email) {
+                this.auth.myuser = logged
+              }
+            });
+            console.log(this.auth.myuser.type)
+            if (this.auth.myuser.type == 'Patient') {
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'List', component: ListPage, icon: 'list' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+                { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
+              ];
+            }
+            else if (this.auth.myuser.type == 'Doctor') {
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+
+              ];
+            }
+          });
+          authObserver.unsubscribe();
+          if (this.auth.myuser != null) {
+            if (this.auth.myuser.type == 'patient') {
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'List', component: ListPage, icon: 'list' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+                { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
+              ];
+            }
+            else if (this.auth.myuser.type == 'doctor') {
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+
+              ];
+            }
+          }
         }
+
         else {
           this.rootPage = LoginPage;
+          this.auth.logged = false
+
         }
       });
 
     this.initializeApp();
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage, icon: 'home' },
-      { title: 'List', component: ListPage, icon: 'list' },
-      { title: 'Profile', component: ProfilePage, icon: 'contact' },
-      { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
-      { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
-      { title: 'Chats', component: ChatlistPage, icon: 'send' },
-      { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-      { title: 'My Medications', component: MedicationslistPage, icon: 'md-clipboard' }
-    ];
   }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -63,6 +115,7 @@ export class MyApp {
     });
 
   }
+
 
   openPage(page) {
     // Reset the content nav to have just this page
