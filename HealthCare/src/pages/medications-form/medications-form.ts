@@ -28,6 +28,12 @@ export class MedicationsFormPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedicationsFormPage');
   }
+  
+  changePrice(i,key)
+  {
+    this.medList[i].price=this.PharmaceuticalList[key-1].Price;
+    console.log(this.medList[i].price);
+  }
 
   addNewMed(){
     this.medList.push({Name:'',TimesPerDay:0,until:'',price:0.0});
@@ -39,10 +45,4 @@ export class MedicationsFormPage {
     console.log(this.medList);
   }
 
-  changePrice(i,key)
-  {
-    console.log(this.PharmaceuticalList[key-1].Price);
-    this.medList[i].price=this.PharmaceuticalList[key-1].Price;
-    console.log(this.medList[i].price);
-  }
 }
