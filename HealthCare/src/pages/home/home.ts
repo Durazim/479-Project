@@ -10,7 +10,9 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController,public auth:AuthProvider,public DB:AuthProvider) {
-console.log('sdsa')
+
+
+console.log(this.auth.myuser)
   }
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 
 /*
@@ -13,7 +14,8 @@ import { Observable } from 'rxjs/Observable';
 */
 @Injectable()
 export class AuthProvider {
-
+public userslist: FirebaseListObservable<any[]>;
+myuser:any;
   public logged: boolean = false;
   user: Observable<firebase.User>;
   useremail:any="";
@@ -30,6 +32,8 @@ export class AuthProvider {
     return this.afAuth.auth.signOut().then(() => {
       this.logged = false;
       this.useremail="";
+      this.userslist=null;
+      this.myuser=null;
       window.location.reload();
     });
   }
