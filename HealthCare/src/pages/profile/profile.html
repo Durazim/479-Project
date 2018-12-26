@@ -50,8 +50,8 @@
     <ion-input type="number" [(ngModel)]="myUser.phone"></ion-input>
   </ion-item> <br>
 
-  <button ion-button block>Confirm Changes</button><br>
-  <button ion-button block>Change Password</button>
+  <button ion-button block (click)="updatedetails(myUser,myUser.$key)">Confirm Changes</button><br>
+  <button ion-button block color="secondary">Change Password</button>
 
 
 </ion-content>

@@ -13,7 +13,6 @@ export class DbProvider {
   private chatpath:any;
   private ukey:any;
   private toArray:any;
-
   public chats:any=[];
 
   constructor(public afdb: AngularFireDatabase, public auth:AuthProvider , public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
@@ -179,8 +178,15 @@ export class DbProvider {
     this.afdb.list('/favorite/').remove(key)
   }
   
+  
   //update
+  UpdateUser(key, user) {
 
+    this.afdb.list('/users/').update(key, user).then((response) => {
+     alert('Details was updated!');
+   });
+
+  }
 
   pushChat(msg){
     this.afdb.list('/chat/').push(msg);

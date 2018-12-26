@@ -18,7 +18,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class ProfilePage {
   
-  myUser={'CPR':'','email':'','fname':'','gender':'','image':'','lname':'' ,'phne':'' ,'type':''};
+  myUser:any;
+  edited:any;
   public listofusers: FirebaseListObservable<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
@@ -28,15 +29,25 @@ export class ProfilePage {
       data.forEach(user => {
         if (user.email == this.auth.useremail){
           this.myUser=user;
-          console.log(this.myUser)
+          console.log(this.myUser.$key)
         }
 
       });
 });
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
-
+  updatedetails(info,key){
+    this.edited={
+      fname:info.fname,
+      lname:info.lname,
+     CPR:info.CPR,
+     email:info.email,
+     gender:info.gender,
+     image:info.image,
+     type:info.type
+    }
+   this.DB.UpdateUser(key,this.edited)
+ }
 }

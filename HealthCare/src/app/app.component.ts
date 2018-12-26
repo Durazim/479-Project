@@ -15,6 +15,8 @@ import { DoctorPage } from '../pages/doctor/doctor';
 import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
 import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
+import { DbProvider } from '../providers/db/db';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,9 +27,9 @@ export class MyApp {
   rootPage: any;
   //rootPage: any = HealtheducationPage;
   pages: Array<{ title: string, component: any, icon: any }>;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider, public DB: DbProvider) {
 
-    afAuth.authState.subscribe(
+     afAuth.authState.subscribe(
       user => {
         if (user) {
           this.auth.useremail = user.email;
@@ -36,9 +38,11 @@ export class MyApp {
         }
         else {
           this.rootPage = LoginPage;
+          this.auth.logged = false
+
         }
       });
-
+    
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
@@ -52,6 +56,7 @@ export class MyApp {
       { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
     ];
   }
+  
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -62,6 +67,7 @@ export class MyApp {
     });
 
   }
+
 
   openPage(page) {
     // Reset the content nav to have just this page
