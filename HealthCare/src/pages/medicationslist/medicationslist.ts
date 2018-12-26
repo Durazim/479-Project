@@ -5,13 +5,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { MedicationsFormPage } from '../medications-form/medications-form';
 
-/**
- * Generated class for the MedicationslistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-medicationslist',
@@ -31,7 +24,7 @@ export class MedicationslistPage {
       data.forEach(doctor => {
         if ((doctor.email == this.auth.useremail) && (doctor.type == "Doctor")) {
           this.typeD = true;
-          console.log(this.typeD)
+          console.log(this.typeD);
         }
       });
     });

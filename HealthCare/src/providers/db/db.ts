@@ -24,7 +24,7 @@ export class DbProvider {
             this.ukey=user.$key;
         }); 
       });
-  }
+    }
 
   //gets
 
@@ -102,8 +102,6 @@ export class DbProvider {
   {
     return this.afdb.list('/chat/');
   }
-
-
 
   getChatsNames()
   {
@@ -203,5 +201,17 @@ export class DbProvider {
     console.log(medPath);
     console.log(med);
     this.afdb.list(medPath).push(med);
+  }
+
+  getPharmaceuticals()
+  {
+    let pharList=[];
+    this.afdb.list('/Pharmaceutical/').forEach(allP=>{
+      allP.forEach(P=>{
+        pharList.push(P);
+      });
+    });
+    // console.log(pharList);
+    return pharList;
   }
 }
