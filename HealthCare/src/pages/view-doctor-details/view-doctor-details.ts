@@ -90,7 +90,13 @@ export class ViewDoctorDetailsPage {
   }
 
   chat(){
-    this.navCtrl.push(ChatPage,{d:this.doctor.$key});
+    let Dname;
+    if(this.doctor.type=="Doctor")
+      Dname = "Dr."+this.doctor.fname+" "+this.doctor.lname;
+    else
+      Dname = this.doctor.fname+" "+this.doctor.lname;
+
+    this.navCtrl.push(ChatPage,{d:this.doctor.$key,n:Dname,flagCL:false});
   }
   initializeItems() {
     this.commentlist = [];

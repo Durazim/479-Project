@@ -17,6 +17,6 @@
   
   
   <ion-content padding>
-    <ion-item *ngFor="let chat of chats" (click)="goToChat(chat.chat)">{{chat.name}}</ion-item>
+    <ion-item *ngFor="let chat of chats" (click)="goToChat(chat.chat,chat.name)">{{chat.name}}</ion-item>
   </ion-content>
   

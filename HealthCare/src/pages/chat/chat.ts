@@ -37,13 +37,15 @@ export class ChatPage {
       {
         this.rec=toArray[1];
       }
-      // console.log(this.rec);
-      this.recName=this.DB.getUserName(this.rec);
+      this.recName=this.navParams.data.Name;
       console.log(this.recName);
-
     }
     else
-      this.rec=this.navParams.data.d;
+      {
+        this.rec=this.navParams.data.d;
+        this.recName=this.navParams.data.n;
+        console.log(this.recName);
+      }
   }
 
   ionViewDidLoad() {

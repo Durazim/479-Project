@@ -18,19 +18,15 @@
 </ion-header>
 
 
-<ion-content padding>
-  <span *ngFor="let chatMsg of chats">
-    <ion-card *ngIf="chatMsg.by == sen">
-      <ion-item color="sen">
-        {{chatMsg.message}}
-      </ion-item> 
-    </ion-card>
-    <ion-card *ngIf="chatMsg.by != sen">
-      <ion-item color="rec">
-        {{chatMsg.message}}
-      </ion-item> 
-    </ion-card>
-  </span>
+<ion-content>
+  <ion-card *ngFor="let chatMsg of chats" [color]="chatMsg.by == sen ? 'sen' : 'rec'">
+    <ion-card-content align="right" *ngIf="chatMsg.by == sen">
+      {{chatMsg.message}}
+    </ion-card-content>
+    <ion-card-content align="left" *ngIf="chatMsg.by != sen">
+      {{chatMsg.message}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer>

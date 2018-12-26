@@ -15,6 +15,7 @@ import { DoctorPage } from '../pages/doctor/doctor';
 import { HealtheducationPage } from '../pages/healtheducation/healtheducation';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
 import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
+import { MedicationsFormPage } from '../pages/medications-form/medications-form';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
-  //rootPage: any = HealtheducationPage;
+  // rootPage: any = ChatlistPage;
   pages: Array<{ title: string, component: any, icon: any }>;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public afAuth: AngularFireAuth, public auth: AuthProvider) {
 
@@ -49,7 +50,7 @@ export class MyApp {
       { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
       { title: 'Chats', component: ChatlistPage, icon: 'send' },
       { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-      { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
+      { title: 'My Medications', component: MedicationslistPage, icon: 'md-clipboard' }
     ];
   }
 
