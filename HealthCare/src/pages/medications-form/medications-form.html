@@ -24,8 +24,7 @@
   <span *ngFor='let med of medList; let i = index' color="primary">
     <ion-card>
       <ion-item color="light">
-        <ion-label>Medicine : </ion-label>
-        <!-- <ion-input type="text" [(ngModel)]="med.Name"></ion-input> -->
+        <ion-label>Medicine: </ion-label>
         <ion-select [(ngModel)]="med.Name" interface="popover">
           <ion-option *ngFor="let phar of PharmaceuticalList" (ionSelect)="changePrice(i,phar.$key)" value="{{phar.Name}}">{{phar.Name}}</ion-option>
         </ion-select>
