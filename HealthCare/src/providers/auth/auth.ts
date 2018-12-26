@@ -32,8 +32,6 @@ myuser:any;
     return this.afAuth.auth.signOut().then(() => {
       this.logged = false;
       this.useremail="";
-      this.userslist=null;
-      this.myuser=null;
       window.location.reload();
     });
   }
