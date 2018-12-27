@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/db';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { MedicationsFormPage } from '../medications-form/medications-form';
+import { JsonPipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -16,9 +17,10 @@ export class MedicationslistPage {
   public flagCM:Boolean=false;
   public rKey:any="";
   public PrscList:any=[];
-  public Prsc:Array<object>=[];
+  public Names=[];
+  public Prsc:FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
     this.Doctorlist = this.DB.getUsers();
     this.Doctorlist.subscribe(data => {
       data.forEach(doctor => {
@@ -28,6 +30,7 @@ export class MedicationslistPage {
         }
       });
     });
+
   }
 
   ionViewDidLoad() {
@@ -44,11 +47,32 @@ export class MedicationslistPage {
       console.log(this.rKey);
     }
     this.PrscList=[];
-    this.Prsc=[]
-    this.PrscList=this.DB.getPrescriptions(this.rKey);
-    console.log(this.PrscList);
-    this.Prsc=this.PrscList;
-    console.log(this.Prsc);
+    // this.PrscList=this.DB.getPrescriptions(this.rKey);
+    // console.log(this.PrscList);
+    this.Prsc=this.DB.getPrescriptions(this.rKey);
+    this.Prsc.subscribe(P=>{
+      console.log(P[0].by);
+      // this.Names.push(this.DB.getUserName(P[0].by));
+      P.forEach(element => {    
+      this.DB.getUsers().subscribe (users => 
+        { 
+          users.forEach(user => 
+          { 
+            if(user.$key==element.by) 
+            { 
+              if(user.type=="Doctor")
+                this.Names.push("Dr."+user.fname+" "+user.lname);
+              else
+                this.Names.push(user.fname+" "+user.lname);
+            }
+          }); 
+        });
+      }); 
+
+      this.PrscList.push(P);
+    });
+    console.log(this.PrscList);  
+    console.log(this.Names);
     console.log('ionViewDidLoad MedicationslistPage');
   }
 
@@ -57,6 +81,16 @@ export class MedicationslistPage {
     console.log(this.PrscList);
     this.navCtrl.push(MedicationsFormPage,{rKey:this.rKey});
     // console.log(rKey);
+  }
+
+  BuyAlert()
+  {    
+    let alert = this.alertCtrl.create({
+      title : 'Payment ' ,
+      subTitle : 'The payment success' ,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

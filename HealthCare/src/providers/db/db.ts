@@ -45,7 +45,7 @@ export class DbProvider {
           else
             uName=user.fname+" "+user.lname;
 
-          // console.log(uName);
+          console.log(uName);
           // console.log("-------");
           return uName;
         }
@@ -248,14 +248,21 @@ export class DbProvider {
 
   getPrescriptions(rKey)
   {
-    let PrscList=[];
-    this.afdb.list('/Prescription/').subscribe(AllPresc=>{
-      AllPresc.forEach(Presc=>{
-        if(Presc.$key==rKey)
-          return Presc;
-          // PrscList.push(Presc);
-      });
-    });
-    // return PrscList;
+    let PrscList:FirebaseListObservable<any[]>;
+    let PerKey= '/Prescription/'+rKey;
+    // console.log(this.afdb.list(PerKey));
+    PrscList=this.afdb.list(PerKey);
+
+    //.subscribe(AllPresc=>{
+  //   AllPresc.forEach(Presc=>{
+  //     if(Presc.$key==rKey)
+  //       PrscList.push(Presc);
+  //       // Presc.forEach(P=>{
+  //       //   console.log(P);
+  //       // })
+  //       // return Presc;
+  //   });
+  // });
+    return PrscList;
   }
 }

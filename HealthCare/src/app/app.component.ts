@@ -73,6 +73,34 @@ export class MyApp {
               ];
             }
           });
+          authObserver.unsubscribe();
+          if (this.auth.myuser != null){
+            if (this.auth.myuser.type == 'Patient'){
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+                { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
+                { title: 'Ask Questions', component: AskquestionPage, icon: 'ios-help' },
+                { title: 'My Questions', component: MyquestionsPage, icon: 'filing' }
+              ];
+            }
+            else if (this.auth.myuser.type == 'Doctor'){
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'Profile', component: ProfilePage, icon: 'contact' },
+                { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
+                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
+                { title: 'Chats', component: ChatlistPage, icon: 'send' },
+                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
+                { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
+                { title: 'Patients Questions', component: QuestionlistfordoctorPage, icon: 'filing' }
+              ];
+            }
+          }
           }
 
 

@@ -22,10 +22,31 @@
 </ion-header>
 
 <ion-content padding>
-    <span *ngFor="let Prsc of PrscList">
-      <ion-item>{{Prsc}}</ion-item>
-    </span>
-    <span *ngFor="let P of Prsc">
-      <ion-item>{{P}}</ion-item>
-    </span>
+    <span *ngFor='let Prsc of PrscList[0];let i = index' color="primary">
+        <ion-card>
+            <button ion-button block>{{Prsc.date|date:'short'}}</button>
+            <button ion-button block>{{Prsc.Desc}}</button>
+            <button ion-button block>{{Names[i]}}</button>
+          <ion-list *ngFor='let P of Prsc.medications'>
+            <ion-item>
+              <ion-label>Medicine: </ion-label>
+              <ion-label ion-button clear>{{P.Name}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Times Per Day: </ion-label>
+              <ion-label ion-button clear>{{P.TimesPerDay}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>until: </ion-label>
+              <ion-label ion-button clear>{{P.until}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Price: </ion-label>
+              <ion-label ion-button clear>{{P.price}}</ion-label>
+            </ion-item>
+            <hr/>
+          </ion-list>
+          <button ion-button block color="secondary" (click)="BuyAlert()">Buy Now</button>
+        </ion-card>
+      </span>
 </ion-content>

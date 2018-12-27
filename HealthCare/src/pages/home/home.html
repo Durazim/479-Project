@@ -13,16 +13,17 @@
 
 <ion-list align="center"> 
 
-    <img src="../../assets/icon/doctorlisticon.ico"  style="width: 25%; height:25%;">  <h4 >Find Doctor</h4>
+    <img src="../../assets/icon/doctorlisticon.ico"  style="width: 25%; height:25%;" (click)="doctorsPage()" > 
+     <h4 >Find Doctor</h4>
     
-  <img src="../../assets/icon/fav.ico" style="width: 25%; height:25%;">
-  <h4 >My Favoraite</h4>
+     <img src="../../assets/icon/fav.ico" style="width: 25%; height:25%;" (click)="fav()">
+     <h4 >My Favoraite</h4>
 
-  <img src="../../assets/icon/chatlist.ico" style="width: 25%; height:25%;">
+  <img src="../../assets/icon/chatlist.ico" style="width: 25%; height:25%;" (click)="chatlist()">
   <h4 >Chat List</h4>
 
 
-  <img src="../../assets/icon/healthedu.ico" style="width: 25%; height:25%;">
+  <img src="../../assets/icon/healthedu.ico" style="width: 25%; height:25%;" (click)="healedupage()">
   <h4 >Health Education</h4>
 </ion-list>
 

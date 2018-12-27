@@ -16,7 +16,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public auth: AuthProvider, public DB: DbProvider) {
 
   }
-    
+   
+  
   doctorsPage(){
     this.navCtrl.push(DoctorPage);
   }
