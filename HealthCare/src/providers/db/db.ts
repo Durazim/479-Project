@@ -6,6 +6,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { Subscriber } from 'rxjs/Subscriber';
 
 @Injectable()
 export class DbProvider {
@@ -218,5 +219,23 @@ export class DbProvider {
     });
     // console.log(pharList);
     return pharList;
+  }
+
+  pushPrescription(block,rKey)
+  {
+    let PerKey= '/Prescription/'+rKey;
+    this.afdb.list(PerKey).push(block);
+  }
+
+  getPrescriptions(rKey)
+  {
+    let PrscList=[];
+    this.afdb.list('/Prescription/').subscribe(AllPresc=>{
+      AllPresc.forEach(Presc=>{
+        if(Presc.$key==rKey)
+          PrscList.push(Presc);
+      });
+    });
+    return PrscList;
   }
 }
