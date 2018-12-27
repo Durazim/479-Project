@@ -22,46 +22,40 @@ export class AskquestionPage {
   public newquestion:any
   questionForm: FormGroup;
   myDate: any = Date.now();
-  public questionlist:any;
- 
-  publ
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public formbuilder: FormBuilder,public auth:AuthProvider,public DB:DbProvider) {
     this.questionForm = formbuilder.group({question: ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(255)]) ]
     });
-    this.initializeItems();
-
-    this.questionlist=this.DB.getQuestion(this.auth.myuser.$key);
 
   }
-
 
   initializeItems() {
-    this.questionlist = [];
-  }
 
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AskquestionPage');
   }
 
   thequestions(){
-    this.initializeItems();
-    if(this.auth.myuser.type=="Patient"){
+
     let patient=this.auth.myuser.fname +" "+ this.auth.myuser.lname;
    
     this.newquestion = {
       question: this.questionForm.value.question,
       by: patient,
       at:this.myDate,
-      sender:this.auth.myuser.email
+      sender:this.auth.myuser.email,
+      ukey:this.auth.myuser.$key
     }
-    this.DB.addQuestion(this.newquestion,this.auth.myuser.$key);
+    this.DB.addQuestion(this.newquestion);
 
     this.question="";
   }
   
   }
+  
 
   
-}
+
 

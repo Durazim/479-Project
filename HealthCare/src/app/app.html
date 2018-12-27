@@ -16,7 +16,7 @@
 
   <ion-footer>
       <ion-item menuClose *ngIf="!auth.logged">  <button ion-button block (click)="login()" clear>Login</button></ion-item>
-    <ion-item *ngIf="auth.logged">  <button ion-button block (click)="logout()" clear>Logout</button></ion-item>
+    <ion-item *ngIf="auth.logged">  <button ion-button block (click)="logout()" clear style="font-size: 15px;">  <ion-icon ios="ios-exit" md="md-exit"> Logout</ion-icon> </button></ion-item>
   </ion-footer>
 </ion-menu>
 

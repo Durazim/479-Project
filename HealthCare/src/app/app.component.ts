@@ -19,6 +19,8 @@ import { MedicationsFormPage } from '../pages/medications-form/medications-form'
 import { DbProvider } from '../providers/db/db';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AskquestionPage } from '../pages/askquestion/askquestion';
+import { MyquestionsPage } from '../pages/myquestions/myquestions';
+import { QuestionlistfordoctorPage } from '../pages/questionlistfordoctor/questionlistfordoctor';
 
 @Component({
   templateUrl: 'app.html'
@@ -54,7 +56,8 @@ export class MyApp {
                 { title: 'Chats', component: ChatlistPage, icon: 'send' },
                 { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
                 { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
-                { title: 'My Questions', component: AskquestionPage, icon: 'ios-help' }
+                { title: 'Ask Questions', component: AskquestionPage, icon: 'ios-help' },
+                { title: 'My Questions', component: MyquestionsPage, icon: 'filing' }
               ];
             }
             else if (this.auth.myuser.type == 'Doctor') {
@@ -66,36 +69,11 @@ export class MyApp {
                 { title: 'Chats', component: ChatlistPage, icon: 'send' },
                 { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
                 { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
-                { title: 'My Questions', component: AskquestionPage, icon: 'ios-help' }
+                { title: 'Patients Questions', component: QuestionlistfordoctorPage, icon: 'filing' }
               ];
             }
           });
-          authObserver.unsubscribe();
-          if (this.auth.myuser != null) {
-            if (this.auth.myuser.type == 'Patient') {
-              this.pages = [
-                { title: 'Home', component: HomePage, icon: 'home' },
-                { title: 'List', component: ListPage, icon: 'list' },
-                { title: 'Profile', component: ProfilePage, icon: 'contact' },
-                { title: 'My Favorite', component: FavoritePage, icon: 'heart' },
-                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
-                { title: 'Chats', component: ChatlistPage, icon: 'send' },
-                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-                { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' }
-              ];
-            }
-            else if (this.auth.myuser.type == 'Doctor') {
-              this.pages = [
-                { title: 'Home', component: HomePage, icon: 'home' },
-                { title: 'Profile', component: ProfilePage, icon: 'contact' },
-                { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
-                { title: 'Chats', component: ChatlistPage, icon: 'send' },
-                { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-
-              ];
-            }
           }
-        }
 
 
         else {
