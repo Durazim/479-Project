@@ -28,20 +28,20 @@ export class MedicationslistPage {
       });
     });
     
-    this.flagCM=this.navParams.data.flagCM;
-    if(this.flagCM)
-    {
-      this.rKey=this.navParams.data.rKey;
-      // console.log(rKey);
-    }
-    else
-    {
-      let rKey=this.DB.getUserKey();
-      // console.log(rKey);
-    }
-    this.PrscList=[];
-    this.PrscList=this.DB.getPrescriptions(this.rKey);
-    console.log(this.PrscList);
+    // this.flagCM=this.navParams.data.flagCM;
+    // if(this.flagCM)
+    // {
+    //   this.rKey=this.navParams.data.rKey;
+    //   // console.log(rKey);
+    // }
+    // else
+    // {
+    //   let rKey=this.DB.getUserKey();
+    //   // console.log(rKey);
+    // }
+    // this.PrscList=[];
+    // this.PrscList=this.DB.getPrescriptions(this.rKey);
+    // console.log(this.PrscList);
   }
 
   ionViewDidLoad() {
@@ -50,12 +50,12 @@ export class MedicationslistPage {
     if(this.flagCM)
     {
       this.rKey=this.navParams.data.rKey;
-      // console.log(rKey);
+      console.log(this.rKey);
     }
     else
     {
-      let rKey=this.DB.getUserKey();
-      // console.log(rKey);
+      this.rKey=this.DB.getUserKey();
+      console.log(this.rKey);
     }
     this.PrscList=[];
     this.PrscList=this.DB.getPrescriptions(this.rKey);
