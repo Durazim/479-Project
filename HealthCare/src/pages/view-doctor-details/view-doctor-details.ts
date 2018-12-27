@@ -46,8 +46,7 @@ export class ViewDoctorDetailsPage {
       thecomment: ['', Validators.compose([Validators.required])]
     });
 
-     
-
+  
 
     //get comments
     this.comment = this.DB.getComment();

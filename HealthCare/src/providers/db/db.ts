@@ -55,8 +55,21 @@ export class DbProvider {
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
   getFavorite(){return this.afdb.list('favorite')}
-
+  //getQuestion(){return this.afdb.list('/questions/')}
+  
   //Add
+  getQuestion(key)
+  {
+    let allquestion=[];
+    this.afdb.list('/questions/').subscribe(data=>{
+      data.forEach(quest=>{
+        if(quest.$key==key)
+        allquestion.push(quest);
+      });
+    });
+    return allquestion;
+  }
+
 
   addUserToDB(newaccount) {
     this.afdb.list('/users/').push(newaccount);
@@ -78,6 +91,12 @@ export class DbProvider {
 
   addFavorite(favorite){
     this.afdb.list('/favorite/').push(favorite);
+  }
+
+  addQuestion(question,key){
+    let PerKey= '/questions/'+key;
+    this.afdb.list(PerKey).push(question);
+
   }
 
   pushMsg(key2,msg)

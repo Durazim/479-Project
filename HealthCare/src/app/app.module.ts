@@ -31,6 +31,7 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AskquestionPage } from '../pages/askquestion/askquestion';
 
 
 
@@ -62,7 +63,8 @@ const firebaseConfig = {
     ChatPage,
     ChatlistPage,
     MedicationslistPage,
-    MedicationsFormPage
+    MedicationsFormPage,
+    AskquestionPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ const firebaseConfig = {
     ChatPage,
     ChatlistPage,
     MedicationslistPage,
-    MedicationsFormPage
+    MedicationsFormPage,
+    AskquestionPage
   ],
   providers: [
     StatusBar,
