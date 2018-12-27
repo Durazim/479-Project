@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Medications List</ion-title>
+    <ion-title>Health History</ion-title>
   </ion-navbar>
   <span *ngIf='typeD'>
     <ion-fab top right>
@@ -23,5 +23,5 @@
 
 
 <ion-content padding>
-
+  <ion-item *ngFor="let P of PrscList">{{P}}</ion-item>
 </ion-content>

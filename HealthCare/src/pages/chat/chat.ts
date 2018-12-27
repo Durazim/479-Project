@@ -70,7 +70,8 @@ export class ChatPage {
 
   medpage()
   {
-    this.navCtrl.push(MedicationslistPage,{medkey:this.chatkey});
+    this.navCtrl.push(MedicationslistPage,{rKey:this.rec,flagCM:true});
+    // console.log(this.rec);
   }
 
 }
