@@ -22,24 +22,16 @@ export class AskquestionPage {
   public newquestion:any
   questionForm: FormGroup;
   myDate: any = Date.now();
-  public questionlist=[];
-  public allquestions: FirebaseListObservable<any[]>;
+  public questionlist:any;
+ 
   publ
   constructor(public navCtrl: NavController, public navParams: NavParams,public formbuilder: FormBuilder,public auth:AuthProvider,public DB:DbProvider) {
     this.questionForm = formbuilder.group({question: ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(255)]) ]
     });
     this.initializeItems();
 
-    this.allquestions=this.DB.getQuestion();
-    this.allquestions.subscribe(data=>{
-      data.forEach(myquestion=>{
-        if(myquestion.sender==this.auth.myuser.email){
-        this.questionlist.push(myquestion)
-        console.log(this.questionlist)
+    this.questionlist=this.DB.getQuestion(this.auth.myuser.$key);
 
-        }
-      })
-    })
   }
 
 
@@ -63,25 +55,11 @@ export class AskquestionPage {
       at:this.myDate,
       sender:this.auth.myuser.email
     }
-    this.DB.addQuestion(this.newquestion);
+    this.DB.addQuestion(this.newquestion,this.auth.myuser.$key);
 
     this.question="";
   }
-  else{
-    let doctor= "Dr. "+this.auth.myuser.fname +" "+ this.auth.myuser.lname;
-   
-    this.newquestion = {
-      answer: this.questionForm.value.question,
-      by: doctor,
-      at:this.myDate,
-      sender:this.auth.myuser.email,
-      
-    }
-    this.DB.addQuestion(this.newquestion);
-
-    this.question="";
-
-  }
+  
   }
 
   
