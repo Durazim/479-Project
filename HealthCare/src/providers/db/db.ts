@@ -54,7 +54,7 @@ export class DbProvider {
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
   getFavorite(){return this.afdb.list('favorite')}
-
+  getQuestion(){return this.afdb.list('/questions/')}
   //Add
 
   addUserToDB(newaccount) {
@@ -77,6 +77,11 @@ export class DbProvider {
 
   addFavorite(favorite){
     this.afdb.list('/favorite/').push(favorite);
+  }
+
+  addQuestion(question){
+
+    this.afdb.list('/questions').push(question);
   }
 
   pushMsg(key2,msg)
