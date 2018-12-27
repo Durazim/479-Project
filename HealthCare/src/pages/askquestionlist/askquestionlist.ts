@@ -31,7 +31,7 @@ export class AskquestionlistPage {
 
   this.questionKey = this.navParams.get('questionKey');
   console.log(this.questionKey)
-  
+  this.thequestion=[];
   this.questionKey = this.navParams.get('questionKey');
   this.questionlist = this.DB.getQuestion();
   this.questionlist.subscribe(questions=>{
