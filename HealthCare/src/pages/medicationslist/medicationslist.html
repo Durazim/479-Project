@@ -21,7 +21,11 @@
   </span>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-item *ngFor="let P of PrscList">{{P.$key}}</ion-item>
+    <span *ngFor="let Prsc of PrscList">
+      <ion-item>{{Prsc}}</ion-item>
+    </span>
+    <span *ngFor="let P of Prsc">
+      <ion-item>{{P}}</ion-item>
+    </span>
 </ion-content>

@@ -247,10 +247,10 @@ export class DbProvider {
     this.afdb.list('/Prescription/').subscribe(AllPresc=>{
       AllPresc.forEach(Presc=>{
         if(Presc.$key==rKey)
-        // if(Presc.$key==this.ukey)
-          PrscList.push(Presc);
+          return Presc;
+          // PrscList.push(Presc);
       });
     });
-    return PrscList;
+    // return PrscList;
   }
 }

@@ -16,6 +16,7 @@ export class MedicationslistPage {
   public flagCM:Boolean=false;
   public rKey:any="";
   public PrscList:any=[];
+  public Prsc:Array<object>=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DB: DbProvider, public auth: AuthProvider) {
     this.Doctorlist = this.DB.getUsers();
@@ -27,21 +28,6 @@ export class MedicationslistPage {
         }
       });
     });
-    
-    // this.flagCM=this.navParams.data.flagCM;
-    // if(this.flagCM)
-    // {
-    //   this.rKey=this.navParams.data.rKey;
-    //   // console.log(rKey);
-    // }
-    // else
-    // {
-    //   let rKey=this.DB.getUserKey();
-    //   // console.log(rKey);
-    // }
-    // this.PrscList=[];
-    // this.PrscList=this.DB.getPrescriptions(this.rKey);
-    // console.log(this.PrscList);
   }
 
   ionViewDidLoad() {
@@ -58,8 +44,11 @@ export class MedicationslistPage {
       console.log(this.rKey);
     }
     this.PrscList=[];
+    this.Prsc=[]
     this.PrscList=this.DB.getPrescriptions(this.rKey);
     console.log(this.PrscList);
+    this.Prsc=this.PrscList;
+    console.log(this.Prsc);
     console.log('ionViewDidLoad MedicationslistPage');
   }
 

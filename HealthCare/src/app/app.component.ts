@@ -53,7 +53,7 @@ export class MyApp {
                 { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
                 { title: 'Chats', component: ChatlistPage, icon: 'send' },
                 { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-                { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
+                { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
                 { title: 'My Questions', component: AskquestionPage, icon: 'ios-help' }
               ];
             }
@@ -65,8 +65,8 @@ export class MyApp {
                 { title: 'Doctor List', component: DoctorPage, icon: 'medkit' },
                 { title: 'Chats', component: ChatlistPage, icon: 'send' },
                 { title: 'Health Education', component: HealtheducationPage, icon: 'information-circle' },
-                { title: 'My Medications', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
-                  { title: 'My Questions', component: AskquestionPage, icon: 'ios-help' }
+                { title: 'My Health History', component: MedicationslistPage, icon: 'ios-clipboard-outline' },
+                { title: 'My Questions', component: AskquestionPage, icon: 'ios-help' }
               ];
             }
           });
