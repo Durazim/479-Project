@@ -6,13 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>askquestionlist</ion-title>
+  <ion-navbar color="main">
+    <ion-title>Answer Question</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
+<!--This page is for the doctor to answer the question!-->
 <ion-content padding>
 
+  <ion-card>
+    <ion-item>
+      <h2> <strong>Patient Name: </strong>  {{thequestion.by}}</h2> <br><br>
+      <h2 style="white-space: pre-line"> <strong> Question:</strong>  {{thequestion.question}}</h2><br>
+      <h4 align="right">{{thequestion.at|date:'short'}}</h4>
+    </ion-item>
+  </ion-card>
+
+  <form [formGroup]="questionForm" (ngSubmit)="thisanswer(questionForm.value)">
+    <br><br><br>
+    <ion-label style="font-size: 2em;color:#290f9e;">Answer: </ion-label><br>
+    <ion-item>
+      <ion-textarea [(ngModel)]="answer" rows="5" formControlName="question" style="border:1px solid #7e7f80"
+        placeholder="Enter a message"></ion-textarea>
+    </ion-item>
+    <br>
+    <button block ion-button color="main" type="submit" [disabled]="!questionForm.valid">
+      <ion-icon name="send"></ion-icon> Send Answer
+    </button>
+  </form>
 </ion-content>

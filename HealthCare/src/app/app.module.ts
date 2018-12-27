@@ -22,7 +22,11 @@ import { ChatPage } from '../pages/chat/chat';
 import { ChatlistPage } from '../pages/chatlist/chatlist';
 import { MedicationslistPage } from '../pages/medicationslist/medicationslist';
 import { MedicationsFormPage } from '../pages/medications-form/medications-form';
-
+import { AskquestionPage } from '../pages/askquestion/askquestion';
+import { MyquestionsPage } from '../pages/myquestions/myquestions';
+import { ThequestionPage } from '../pages/thequestion/thequestion';
+import { QuestionlistfordoctorPage } from '../pages/questionlistfordoctor/questionlistfordoctor';
+import { AskquestionlistPage } from '../pages/askquestionlist/askquestionlist';
 //providers
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
@@ -31,7 +35,8 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AskquestionPage } from '../pages/askquestion/askquestion';
+
+
 
 
 
@@ -64,7 +69,11 @@ const firebaseConfig = {
     ChatlistPage,
     MedicationslistPage,
     MedicationsFormPage,
-    AskquestionPage
+    AskquestionPage,
+    MyquestionsPage,
+    ThequestionPage,
+    QuestionlistfordoctorPage,
+    AskquestionlistPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +103,11 @@ const firebaseConfig = {
     ChatlistPage,
     MedicationslistPage,
     MedicationsFormPage,
-    AskquestionPage
+    AskquestionPage,
+    MyquestionsPage,
+    ThequestionPage,
+    QuestionlistfordoctorPage,
+    AskquestionlistPage
   ],
   providers: [
     StatusBar,

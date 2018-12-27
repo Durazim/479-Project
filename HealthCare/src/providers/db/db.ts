@@ -6,7 +6,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { Subscriber } from 'rxjs/Subscriber';
+
 
 @Injectable()
 export class DbProvider {
@@ -55,21 +55,21 @@ export class DbProvider {
   getHealthEducation() { return this.afdb.list('/HealthEducation/'); }
   getComment() { return this.afdb.list('/comments/'); }
   getFavorite(){return this.afdb.list('favorite')}
-  //getQuestion(){return this.afdb.list('/questions/')}
+  getQuestion(){return this.afdb.list('/questions/')}
+  getQuestionAnswers(){ return this.afdb.list('/replies/')};
   
   //Add
-  getQuestion(key)
-  {
-    let allquestion=[];
-    this.afdb.list('/questions/').subscribe(data=>{
-      data.forEach(quest=>{
-        if(quest.$key==key)
-        allquestion.push(quest);
-      });
-    });
-    return allquestion;
-  }
 
+  addAnswerQuestion(answer){
+    return this.afdb.list('/replies/').push(answer).then(() => {
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Answer Delivered to Patient',
+        buttons: ['OK']
+      });
+      alert.present();
+    });
+  }
 
   addUserToDB(newaccount) {
     this.afdb.list('/users/').push(newaccount);
@@ -93,10 +93,15 @@ export class DbProvider {
     this.afdb.list('/favorite/').push(favorite);
   }
 
-  addQuestion(question,key){
-    let PerKey= '/questions/'+key;
-    this.afdb.list(PerKey).push(question);
-
+  addQuestion(question){
+    this.afdb.list('/questions/').push(question).then(() => {
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Question Delivered to Doctors',
+        buttons: ['OK']
+      });
+      alert.present();
+    });
   }
 
   pushMsg(key2,msg)

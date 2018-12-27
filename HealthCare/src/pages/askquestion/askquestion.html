@@ -10,35 +10,24 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Emergency Questions</ion-title>
+    <ion-title>Ask Questions</ion-title>
   </ion-navbar>
-
+<!--This page is for the patient to ask the question!-->
 </ion-header>
 
 
 <ion-content padding>
-
-    <ion-card *ngFor="let question of questionlist" color="light">
-        <ion-card-content align="left" >
-          <ion-badge item-end>By: {{question.by}} </ion-badge>
-            <h2 style="margin-left:20px;white-space: pre-line" >{{question.question}}</h2>
-            <h4 align="right">{{myDate|date:'short'}}</h4>
-        </ion-card-content>
-        <ion-card-content align="left">
-         
-        </ion-card-content>
-      </ion-card>
-
-</ion-content>
-
+  
+  <form [formGroup] = "questionForm" (ngSubmit)="thequestions(questionForm.value)">
+      <br><br><br>
+    <ion-label  style="font-size: 2em;color:#290f9e;">Your Question: </ion-label><br>
+    <ion-item> <ion-textarea  [(ngModel)]="question" rows="5" formControlName="question" style="border:1px solid #7e7f80" placeholder="Enter a message"></ion-textarea >
+      </ion-item>
+      <br>
+      <button block ion-button  color="main" type="submit" [disabled]="!questionForm.valid"> <ion-icon name="send"></ion-icon> Send Question</button>
+    </form>
 
 <ion-footer>
 
-    <form [formGroup] = "questionForm" (ngSubmit)="thequestions(questionForm.value)">
 
-      <ion-item no-lines>
-          <ion-input [(ngModel)]="question" formControlName="question" style="border:1px solid #7e7f80" placeholder="Enter a message"></ion-input>
-        </ion-item>
-        <button block ion-button  color="main" type="submit" [disabled]="!questionForm.valid"> <ion-icon name="send"></ion-icon> Ask Question</button>
-      </form>
 </ion-footer>
